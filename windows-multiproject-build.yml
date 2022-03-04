@@ -1,0 +1,12 @@
+parameters:
+- name: 'project' 
+  type: object
+  default:
+    - WindowsService
+
+steps:
+- ${{ each p in parameters.project }}:
+  - template: windows-build.yml
+    parameters:
+      project: '**/${{ p }}.csproj'
+      packageName: ${{ p }}

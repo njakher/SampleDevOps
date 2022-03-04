@@ -1,0 +1,73 @@
+
+name: SampleDemo_$(Date:yyyymmdd)$(Rev:r)
+
+trigger: none
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  
+stages: 
+ - stage: build
+   displayName: 'Build Solution'
+   jobs:
+   - job: 'BuildAndPublish'
+     displayName: 'Build and Publish' 
+     pool:
+      vmImage: 'windows-2022'
+
+     steps:
+  
+      - task: UseDotNet@2
+        displayName: 'Use .NET Core sdk'
+        inputs:
+            packageType: 'sdk'
+            version: '6.0.x'
+            includePreviewVersions: true
+
+      - task: NuGetToolInstaller@1
+
+      - task: NuGetCommand@2
+        displayName: 'Restore NuGet Package'
+        name: 'RestorePackage'
+        inputs:
+            command: 'restore'
+            restoreSolution: $(solution)
+            feedsToUse: 'select'
+      
+      - template: multiproject-build.yml
+      - template: windows-multiproject-build.yml
+
+#      - template: build.yml
+#        parameters:
+#          project: '**/Web1.csproj'
+#          packageName: Web1
+      
+#      - template: build.yml
+#        parameters:
+#          project: '**/Web2.csproj'
+#          packageName: Web2
+
+#      - template: windows-build.yml
+#        parameters:
+#          project: '**/WindowsService.csproj'
+#          packageName: WindowsService
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)/package'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
+      
+ - template: deploy.yml
+   parameters:
+    stageName: dev
+    environment: DEV
+
+# - template: deploy.yml
+#   parameters:
+#    stageName: prod
+#    environment: PROD
+
+

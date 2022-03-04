@@ -1,0 +1,23 @@
+parameters:
+- name: 'project' 
+  type: string
+- name: 'packageName' 
+  type: string
+
+steps:
+
+  - task: MSBuild@1
+    inputs:
+        solution: '${{parameters.project}}'
+        msbuildArguments: '/p:DeployOnBuild=True /p:OutDir=$(Build.ArtifactStagingDirectory)/${{parameters.packageName}}'
+        platform: 'AnyCPU'
+        configuration: '$(buildConfiguration)'
+
+
+  - task: ArchiveFiles@2
+    inputs:
+        rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/${{parameters.packageName}}'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/package/${{parameters.packageName}}.zip'
+        replaceExistingArchive: true

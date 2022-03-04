@@ -1,0 +1,21 @@
+parameters:
+- name: 'stageName'
+  type: string
+- name: 'environment'
+  type: string
+  values:
+  - DEV
+  - PROD
+
+stages:
+- stage: ${{ parameters.stageName }}
+  displayName: 'Deploy  ${{ parameters.stageName }}'
+  jobs:
+  - deployment: deploymentProd1
+    environment: ${{ parameters.environment }}
+    strategy: 
+       runOnce:
+         deploy:
+           steps:
+             - bash: |
+                echo 'Deployment on PROD'
