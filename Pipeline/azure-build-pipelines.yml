@@ -1,6 +1,9 @@
 
 name: SampleDemo_$(Date:yyyymmdd)$(Rev:r)
 
+#  YAML pipelines are configured by default with a CI trigger on all branches. but not required for PR builds
+trigger: none
+
 pr:
 - master
 - releases/* # wildcard trigger
