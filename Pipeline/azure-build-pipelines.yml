@@ -1,7 +1,9 @@
 
 name: SampleDemo_$(Date:yyyymmdd)$(Rev:r)
 
-trigger: none
+pr:
+- master
+- releases/* # wildcard trigger
 
 variables:
   solution: '**/*.sln'
