@@ -1,0 +1,2 @@
+App build batch in readme fie
+Add status of build to github
