@@ -60,10 +60,10 @@ stages:
           ArtifactName: 'drop'
           publishLocation: 'Container'
       
- - template: deploy.yml
-   parameters:
-    stageName: dev
-    environment: DEV
+# - template: deploy.yml
+#   parameters:
+#    stageName: dev
+#    environment: DEV
 
 # - template: deploy.yml
 #   parameters:
