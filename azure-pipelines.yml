@@ -60,7 +60,7 @@ stages:
           ArtifactName: 'drop'
           publishLocation: 'Container'
       
- - stage: deploy
+ - stage: deploylocal
    displayName: 'Deploy local'
    jobs:
     - deployment: deploymentuniqued 
