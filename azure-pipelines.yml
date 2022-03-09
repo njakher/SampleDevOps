@@ -79,7 +79,7 @@ stages:
             - task: IISWebAppDeploymentOnMachineGroup@0
               inputs:
                 WebSiteName: 'myApi'
-                Package: '$(System.DefaultWorkingDirectory)\**\web1.zip'
+                Package: '$(Build.ArtifactStagingDirectory)\**\web1.zip'
                 RemoveAdditionalFilesFlag: true
                 TakeAppOfflineFlag: true
           on: 
