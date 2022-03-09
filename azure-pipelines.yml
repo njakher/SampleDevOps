@@ -76,7 +76,12 @@ stages:
             - script: echo initialize, cleanup, backup, install certs
           deploy:
             steps:
-            - script: echo deploy iis and windows service
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'myApi'
+                Package: '$(System.DefaultWorkingDirectory)\**\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
           on: 
             failure: 
               steps: 
