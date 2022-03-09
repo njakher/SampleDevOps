@@ -79,7 +79,7 @@ stages:
             - task: IISWebAppDeploymentOnMachineGroup@0
               inputs:
                 WebSiteName: 'myApi'
-                Package: '$(Build.ArtifactStagingDirectory)\**\web1.zip'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
                 RemoveAdditionalFilesFlag: true
                 TakeAppOfflineFlag: true
           on: 
