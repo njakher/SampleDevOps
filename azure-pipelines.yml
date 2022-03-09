@@ -37,7 +37,7 @@ stages:
             feedsToUse: 'select'
       
       - template: multiproject-build.yml
-      - template: windows-multiproject-build.yml
+#      - template: windows-multiproject-build.yml
 
 #      - template: build.yml
 #        parameters:
@@ -60,14 +60,27 @@ stages:
           ArtifactName: 'drop'
           publishLocation: 'Container'
       
-# - template: deploy.yml
-#   parameters:
-#    stageName: dev
-#    environment: DEV
-
-# - template: deploy.yml
-#   parameters:
-#    stageName: prod
-#    environment: PROD
-
-
+ - stage: deploy
+   displayName: 'Deploy local'
+   jobs:
+    - deployment: deploymentuniqued 
+      displayName: 'Deployment'
+      timeoutInMinutes: 10
+      environment: 
+        name: local
+        resourceType: VirtualMachine
+      strategy: 
+        runOnce:
+          preDeploy:
+            steps:
+            - script: echo initialize, cleanup, backup, install certs
+          deploy:
+            steps:
+            - script: echo deploy iis and windows service
+          on: 
+            failure: 
+              steps: 
+              - script: echo clean-up, rollback...   
+            success: 
+              steps: 
+              - script: echo checks passed, notify...
