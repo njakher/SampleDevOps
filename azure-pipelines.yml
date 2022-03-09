@@ -76,12 +76,26 @@ stages:
             - script: echo initialize, cleanup, backup, install certs
           deploy:
             steps:
+            
+            - task: IISWebAppManagementOnMachineGroup@0
+              displayName: 'Stop Application Pool'
+              inputs:
+                IISDeploymentType: 'IISApplicationPool'
+                ActionIISApplicationPool: 'StopAppPool'
+                StartStopRecycleAppPoolName: 'DevOpsPool'
             - task: IISWebAppDeploymentOnMachineGroup@0
               inputs:
                 WebSiteName: 'myApi'
                 Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
                 RemoveAdditionalFilesFlag: true
                 TakeAppOfflineFlag: true
+                
+            - task: IISWebAppManagementOnMachineGroup@0
+              displayName: 'Start Application Pool'
+              inputs:
+                IISDeploymentType: 'IISApplicationPool'
+                ActionIISApplicationPool: 'StartAppPool'
+                StartStopRecycleAppPoolName: 'DevOpsPool'
           on: 
             failure: 
               steps: 
