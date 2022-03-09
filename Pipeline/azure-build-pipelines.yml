@@ -41,8 +41,8 @@ stages:
             restoreSolution: $(solution)
             feedsToUse: 'select'
       
-#      - template: multiproject-build.yml
-#      - template: windows-multiproject-build.yml
+      - template: multiproject-build.yml
+      - template: windows-multiproject-build.yml
 
 #      - template: build.yml
 #        parameters:
