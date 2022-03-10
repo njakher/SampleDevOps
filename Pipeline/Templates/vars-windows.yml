@@ -1,7 +1,31 @@
-# File: vars.yml
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU' # At few places it was found to be AnyCPU in the project file
-  buildConfiguration: 'Release'
-  projectBuildPlatform: 'AnyCPU'
+  serviceAcknowledge: 'IKEA Acknowledge Service'
+  serviceBusinessPartner: 'IKEA Business Partner Service' 
+  serviceConsignment: 'IKEA Consignment Event Service'
+  serviceDeclaration: 'IKEA Declaration Service'
+  serviceInvoiceNotification: 'IKEA Invoice Notification Service'
+  serviceProductClassification: 'IKEA Product Classification Service'
+  serviceShipment: 'IKEA Shipment Event Service'
+  serviceWorklistItem: 'IKEA Worklist Item Service'
+  
+#  packageAcknowledge: 'web1.zip'
+#  packageBusinessPartner: 'web1.zip' 
+#  packageConsignment: 'web1.zip'
+#  packageDeclaration: 'web1.zip'
+#  packageInvoiceNotification: 'web1.zip'
+#  packageProductClassification: 'web1.zip'
+#  packageShipment: 'web1.zip'
+#  packageWorklistItem: 'web1.zip'
+  
+  packageAcknowledge: 'web1.zip'
+  packageBusinessPartner: 'web1.zip' 
+  packageConsignment: 'web1.zip'
+  packageDeclaration: 'web1.zip'
+  packageInvoiceNotification: 'web1.zip'
+  packageProductClassification: 'web1.zip'
+  packageShipment: 'web1.zip'
+  packageWorklistItem: 'web1.zip'
+
+  
+ 
