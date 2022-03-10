@@ -1,0 +1,49 @@
+# Description: Release pipleline.
+
+name: XCO_Release_$(Date:yyyymmdd)$(Rev:r)
+
+# On-demand for development purpose
+trigger: none
+
+variables:
+- template: ./Templates/vars.yml
+  
+stages: 
+ - stage: build
+   displayName: 'Build Solution'
+   jobs:
+   - job: 'BuildAndPublish'
+     displayName: 'Build and Publish' 
+     pool:
+      vmImage: 'windows-latest'
+
+     steps:
+      - task: NuGetToolInstaller@1
+      
+      - task: NuGetCommand@2
+        displayName: 'Restore NuGet Package'
+        name: 'RestorePackage'
+        inputs:
+            command: 'restore'
+            restoreSolution: $(solution)
+            feedsToUse: 'select'
+
+      - task: VSBuild@1
+        displayName: 'Build Solution' 
+        inputs:
+          solution: '$(solution)'
+          platform: '$(buildPlatform)'
+          configuration: '$(buildConfiguration)'
+            
+      - template: ./Templates/multiproject-web-build.yml
+#      - template: ./Templates/multiproject-windows-build.yml
+      
+ - template: ./Templates/deploy.yml
+   parameters:
+    stageName: local
+    environment: local
+
+
+# Comment in the end
+
+

@@ -1,0 +1,13 @@
+parameters:
+- name: 'project' 
+  type: object
+  default:
+    - Web1
+    - Web2
+
+steps:
+- ${{ each p in parameters.project }}:
+  - template: web-build.yml
+    parameters:
+      project: '**/${{ p }}.csproj'
+      packageName: ${{ p }}

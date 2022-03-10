@@ -1,0 +1,128 @@
+parameters:
+- name: 'stageName'
+  type: string
+- name: 'environment'
+  type: string
+
+stages:
+- stage: ${{ parameters.stageName }}
+  displayName: 'Deploy  ${{ parameters.stageName }}'
+  jobs:
+  - deployment: deploymentProd1
+    displayName: 'Deployment'
+      timeoutInMinutes: 10
+      environment: 
+        name: ${{ parameters.environment }}
+        resourceType: VirtualMachine
+    strategy: 
+        runOnce:
+          preDeploy:
+            steps:
+            - script: echo initialize, cleanup, backup, install certs
+          deploy:
+            steps:
+            
+            - task: IISWebAppManagementOnMachineGroup@0
+              displayName: 'Stop Application Pool'
+              inputs:
+                IISDeploymentType: 'IISApplicationPool'
+                ActionIISApplicationPool: 'StopAppPool'
+                StartStopRecycleAppPoolName: 'DevOpsPool'
+                
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'AdditionalTariff'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+                
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'B2B'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'BusinessPartner'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'CustomsInventory'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'DeclarationSetting'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'DeclarationStatus'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'DropDownValues'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'LotAndJobNumber'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'MCO'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+                
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'Product'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+            
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'ReceivingCountry'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+                
+            - task: IISWebAppDeploymentOnMachineGroup@0
+              inputs:
+                WebSiteName: 'TallySheet'
+                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
+                RemoveAdditionalFilesFlag: true
+                TakeAppOfflineFlag: true
+                
+            - task: IISWebAppManagementOnMachineGroup@0
+              displayName: 'Start Application Pool'
+              inputs:
+                IISDeploymentType: 'IISApplicationPool'
+                ActionIISApplicationPool: 'StartAppPool'
+                StartStopRecycleAppPoolName: 'DevOpsPool'
+          on: 
+            failure: 
+              steps: 
+              - script: echo clean-up, rollback...   
+            success: 
+              steps: 
+              - script: echo checks passed, notify...

@@ -1,0 +1,12 @@
+parameters:
+- name: 'project' 
+  type: object
+  default:
+    - IKEA.Customs.Transceiver.BusinessPartnerService 
+
+steps:
+- ${{ each p in parameters.project }}:
+  - template: windows-build.yml
+    parameters:
+      project: '**/${{ p }}.csproj'
+      packageName: ${{ p }}
