@@ -10,10 +10,10 @@ stages:
   jobs:
   - deployment: deploymentProd1
     displayName: 'Deployment'
-      timeoutInMinutes: 10
-      environment: 
-        name: ${{ parameters.environment }}
-        resourceType: VirtualMachine
+    timeoutInMinutes: 10
+    environment: 
+      name: ${{ parameters.environment }}
+      resourceType: VirtualMachine
     strategy: 
         runOnce:
           preDeploy:
