@@ -6,9 +6,6 @@ parameters:
     - Web2
 - name: 'webApplication' 
   type: string
-
-variables:
-- template: ./vars-web.yml
   
 steps:
 - ${{ each p in parameters.project }}:

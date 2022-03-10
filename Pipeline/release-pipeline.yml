@@ -23,7 +23,9 @@ stages:
    displayName: 'Build Solution'
    jobs:
    - job: 'BuildAndPublish'
-     displayName: 'Build and Publish' 
+     displayName: 'Build and Publish'
+     variables:
+      - template: ./Templates/vars-web.yml  # Template reference     
      pool:
       vmImage: 'windows-2022' #windows-latest
 
