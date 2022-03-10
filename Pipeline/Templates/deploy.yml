@@ -39,7 +39,7 @@ stages:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteB2B}}
-                packageName: ${{variables.packageSiteB2B}}
+                packageName: ${{variables.packageB2B}}
 
             - template: deploy-web.yml
               parameters:
