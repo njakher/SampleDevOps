@@ -24,16 +24,16 @@ stages:
    jobs:
    - job: 'BuildAndPublish'
      displayName: 'Build and Publish'
-     variables:
-      - template: ./Templates/vars-web.yml  # Template reference     
+#     variables:
+#      - template: ./Templates/vars-web.yml  # variables to be used later    
      pool:
       vmImage: 'windows-2022' #windows-latest
 
      steps:
      
-      - template: ./Templates/param-test.yml
-        parameters:
-          webApplication: ${{parameters.webApplication}}
+#      - template: ./Templates/param-test.yml
+#        parameters:
+#          webApplication: ${{parameters.webApplication}}
       
       - task: UseDotNet@2
         displayName: 'Use .NET Core sdk'

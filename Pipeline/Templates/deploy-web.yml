@@ -1,0 +1,13 @@
+parameters:
+- name: 'websiteName' 
+  type: string
+- name: 'packageName' 
+  type: string
+  
+steps:
+- task: IISWebAppDeploymentOnMachineGroup@0
+  inputs:
+    WebSiteName: ${{ parameters.websiteName }}
+    Package: 'C:\azagent\A1\_work\1\drop\${{ parameters.packageName }}'
+    RemoveAdditionalFilesFlag: true
+    TakeAppOfflineFlag: true

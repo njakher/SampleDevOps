@@ -11,6 +11,8 @@ stages:
   - deployment: deploymentProd1
     displayName: 'Deployment'
     timeoutInMinutes: 10
+    variables:
+      - template: ./vars-web.yml 
     environment: 
       name: ${{ parameters.environment }}
       resourceType: VirtualMachine
@@ -28,90 +30,66 @@ stages:
                 IISDeploymentType: 'IISApplicationPool'
                 ActionIISApplicationPool: 'StopAppPool'
                 StartStopRecycleAppPoolName: 'mcoapi'
-                
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'AdditionalTariff'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
-                
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'B2B'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
-
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'BusinessPartner'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
-
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'CustomsInventory'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
-
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'DeclarationSetting'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
-
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'DeclarationStatus'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
-
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'DropDownValues'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
-
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'LotAndJobNumber'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
-
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'MCO'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
-                
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'Product'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
             
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'ReceivingCountry'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
-                
-            - task: IISWebAppDeploymentOnMachineGroup@0
-              inputs:
-                WebSiteName: 'TallySheet'
-                Package: 'C:\azagent\A1\_work\1\drop\web1.zip'
-                RemoveAdditionalFilesFlag: true
-                TakeAppOfflineFlag: true
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteAdditionalTariff)
+                packageName: $(packageSiteAdditionalTariff)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteB2B)
+                packageName: $(packageSiteB2B)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteBusinessPartner)
+                packageName: $(packageSiteBusinessPartner)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteCustomsInventory)
+                packageName: $(packageSiteCustomsInventory)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteDeclarationSetting)
+                packageName: $(packageSiteDeclarationSetting)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteDeclarationStatus)
+                packageName: $(packageSiteDeclarationStatus)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteDropDownValues)
+                packageName: $(packageSiteDropDownValues)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteLotAndJobNumber)
+                packageName: $(packageSiteLotAndJobNumber)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteMCO)
+                packageName: $(packageSiteMCO)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteProduct)
+                packageName: $(packageSiteProduct)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteReceivingCountry)
+                packageName: $(packageSiteReceivingCountry)
+
+            - template: deploy-web.yml
+              parameters:
+                websiteName: $(webSiteTallySheet)
+                packageName: $(packageSiteTallySheet)
                 
             - task: IISWebAppManagementOnMachineGroup@0
               displayName: 'Start Application Pool'
