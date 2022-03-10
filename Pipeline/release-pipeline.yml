@@ -3,42 +3,102 @@
 parameters:
     
   - name: additionalTariff
-    displayName: AdditionalTariff
+    displayName: AdditionalTariff Api
     type: boolean
     default: true
     
   - name: b2b
-    displayName: B2B
+    displayName: B2B Api
     type: boolean
     default: true
     
   - name: businessPartner
-    displayName: BusinessPartner
+    displayName: BusinessPartner Api
     type: boolean
     default: true
     
   - name: customsInventory
-    displayName: CustomsInventory
+    displayName: CustomsInventory Api
     type: boolean
     default: true
     
   - name: declarationSetting
-    displayName: DeclarationSetting
+    displayName: DeclarationSetting Api
     type: boolean
     default: true
     
   - name: declarationStatus
-    displayName: DeclarationStatus
+    displayName: DeclarationStatus Api
     type: boolean
     default: true
     
   - name: dropDownValues
-    displayName: DropDownValues
+    displayName: DropDownValues Api
     type: boolean
     default: true
     
-  - name: lotAndJobNumber
-    displayName: LotAndJobNumber
+  - name: lotAndJobNumber 
+    displayName: LotAndJobNumber Api
+    type: boolean
+    default: true
+    
+  - name: mco
+    displayName: MCO Web
+    type: boolean
+    default: true
+
+  - name: product
+    displayName: Product Api
+    type: boolean
+    default: true
+    
+  - name: receivingCountry
+    displayName: ReceivingCountry Api
+    type: boolean
+    default: true
+    
+  - name: tallySheet
+    displayName: TallySheet Api
+    type: boolean
+    default: true
+
+  - name: acknowledge
+    displayName: Acknowledge Service
+    type: boolean
+    default: true
+    
+  - name: partnerService
+    displayName: Business Partner Service
+    type: boolean
+    default: true
+
+  - name: consignmentService
+    displayName: Consignment Event Service
+    type: boolean
+    default: true
+
+  - name: declarationService
+    displayName: Declaration Service
+    type: boolean
+    default: true
+
+  - name: notificationService
+    displayName: Invoice Notification Service
+    type: boolean
+    default: true
+
+  - name: classificationService
+    displayName: Product Classification Service
+    type: boolean
+    default: true
+
+  - name: shipmentService
+    displayName: Shipment Event Service
+    type: boolean
+    default: true
+
+  - name: itemService
+    displayName: Worklist Item Service
     type: boolean
     default: true
 
