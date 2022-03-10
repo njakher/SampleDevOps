@@ -4,11 +4,6 @@ parameters:
   default:
     - Web1
     - Web2
-- name: 'project' 
-  type: object
-  default:
-    - Web1
-    - Web2
 
 steps:
 - ${{ each p in parameters.project }}:
