@@ -27,7 +27,7 @@ stages:
               inputs:
                 IISDeploymentType: 'IISApplicationPool'
                 ActionIISApplicationPool: 'StopAppPool'
-                StartStopRecycleAppPoolName: 'DevOpsPool'
+                StartStopRecycleAppPoolName: 'mcoapi'
                 
             - task: IISWebAppDeploymentOnMachineGroup@0
               inputs:
@@ -118,7 +118,7 @@ stages:
               inputs:
                 IISDeploymentType: 'IISApplicationPool'
                 ActionIISApplicationPool: 'StartAppPool'
-                StartStopRecycleAppPoolName: 'DevOpsPool'
+                StartStopRecycleAppPoolName: 'mcoapi'
           on: 
             failure: 
               steps: 
