@@ -1,0 +1,12 @@
+parameters:
+- name: 'project' 
+  type: object
+  default:
+    - Web1
+    - Web2
+
+steps:
+- ${{ each p in parameters.project }}:
+  - script: 'echo building $${{ p }}'
+  - script: 'echo building $${{ parameters.webApplication }}'
+    
