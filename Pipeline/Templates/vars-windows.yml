@@ -1,5 +1,8 @@
 
 variables:
+
+  serviceBasePath: 'C:\Service'
+
   serviceAcknowledge: 'IKEA Acknowledge Service'
   serviceBusinessPartner: 'IKEA Business Partner Service' 
   serviceConsignment: 'IKEA Consignment Event Service'

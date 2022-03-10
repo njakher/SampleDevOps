@@ -12,7 +12,8 @@ stages:
     displayName: 'Deployment'
     timeoutInMinutes: 10
     variables:
-      - template: ./vars-web.yml 
+      - template: ./vars-web.yml
+      - template: ./vars-windows.yml      
     environment: 
       name: ${{ parameters.environment }}
       resourceType: VirtualMachine
@@ -97,6 +98,15 @@ stages:
                 IISDeploymentType: 'IISApplicationPool'
                 ActionIISApplicationPool: 'StartAppPool'
                 StartStopRecycleAppPoolName: 'mcoapi'
+            
+            - task: ExtractFiles@1
+              displayName: 'Extract File'
+              inputs:
+                archiveFilePatterns: 'C:\azagent\A1\_work\1\drop\*.zip'
+                destinationFolder: ${{variables.serviceBasePath}}
+                cleanDestinationFolder: true
+                overwriteExistingFiles: false         
+                
           on: 
             failure: 
               steps: 
