@@ -1,5 +1,15 @@
 # Description: Release pipleline.
 
+parameters:
+  - name: webApplication
+    displayName: Web Application
+    type: string
+    default: All
+    values:
+    - All
+    - AdditionalTariff
+    - B2B
+
 name: XCO_Release_$(Date:yyyymmdd)$(Rev:r)
 
 # On-demand for development purpose

@@ -1,0 +1,7 @@
+# File: vars.yml
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU' # At few places it was found to be AnyCPU in the project file
+  buildConfiguration: 'Release'
+  projectBuildPlatform: 'AnyCPU'
