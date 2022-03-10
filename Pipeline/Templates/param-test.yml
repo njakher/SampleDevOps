@@ -6,9 +6,12 @@ parameters:
     - Web2
 - name: 'webApplication' 
   type: string
+
+variables:
+- template: ./vars-web.yml
   
 steps:
 - ${{ each p in parameters.project }}:
   - script: 'echo building $${{ p }}'
-  - script: 'echo building $${{ parameters.webApplication }}'
+  - script: 'echo building $${{ parameters.webApplication }} $(webSiteDeclarationSetting)'
     

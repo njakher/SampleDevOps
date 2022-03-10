@@ -1,7 +1,17 @@
 # File: vars.yml
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU' # At few places it was found to be AnyCPU in the project file
-  buildConfiguration: 'Release'
-  projectBuildPlatform: 'AnyCPU'
+  webSiteAdditionalTariff: 'AdditionalTariff'
+  webSiteB2B: 'B2B' 
+  webSiteBusinessPartner: 'BusinessPartner'
+  webSiteCustomsInventory: 'CustomsInventory'
+  webSiteDeclarationSetting: 'DeclarationSetting'
+  webSiteDeclarationStatus: 'DeclarationStatus'
+  webSiteDropDownValues: 'DropDownValues'
+  webSiteLotAndJobNumber: 'LotAndJobNumber'
+  webSiteMCO: 'MCO'
+  webSiteProduct: 'Product'
+  webSiteReceivingCountry: 'ReceivingCountry'
+  webSiteTallySheet: 'TallySheet'
+  
+  
