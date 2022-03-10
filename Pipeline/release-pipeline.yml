@@ -30,6 +30,8 @@ stages:
      steps:
      
       - template: ./Templates/param-test.yml
+        parameters:
+          webApplication: ${{parameters.webApplication}}
       
       - task: UseDotNet@2
         displayName: 'Use .NET Core sdk'

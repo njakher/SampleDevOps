@@ -4,7 +4,9 @@ parameters:
   default:
     - Web1
     - Web2
-
+- name: 'webApplication' 
+  type: string
+  
 steps:
 - ${{ each p in parameters.project }}:
   - script: 'echo building $${{ p }}'
