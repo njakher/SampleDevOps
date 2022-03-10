@@ -34,62 +34,62 @@ stages:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteAdditionalTariff}}
-                packageName: ${{variables.packageSiteAdditionalTariff}}
+                packageName: ${{variables.packageAdditionalTariff}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteB2B)
-                packageName: $(packageSiteB2B)
+                websiteName: ${{variables.webSiteB2B}}
+                packageName: ${{variables.packageSiteB2B}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteBusinessPartner)
-                packageName: $(packageSiteBusinessPartner)
+                websiteName: ${{variables.webSiteBusinessPartner}}
+                packageName: ${{variables.packageBusinessPartner}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteCustomsInventory)
-                packageName: $(packageSiteCustomsInventory)
+                websiteName: ${{variables.webSiteCustomsInventory}}
+                packageName: ${{variables.packageCustomsInventory}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteDeclarationSetting)
-                packageName: $(packageSiteDeclarationSetting)
+                websiteName: ${{variables.webSiteDeclarationSetting}}
+                packageName: ${{variables.packageDeclarationSetting}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteDeclarationStatus)
-                packageName: $(packageSiteDeclarationStatus)
+                websiteName: ${{variables.webSiteDeclarationStatus}}
+                packageName: ${{variables.packageDeclarationStatus}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteDropDownValues)
-                packageName: $(packageSiteDropDownValues)
+                websiteName: ${{variables.webSiteDropDownValues}}
+                packageName: ${{variables.packageDropDownValues}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteLotAndJobNumber)
-                packageName: $(packageSiteLotAndJobNumber)
+                websiteName: ${{variables.webSiteLotAndJobNumber}}
+                packageName: ${{variables.packageLotAndJobNumber}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteMCO)
-                packageName: $(packageSiteMCO)
+                websiteName: ${{variables.webSiteMCO}}
+                packageName: ${{variables.packageMCO}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteProduct)
-                packageName: $(packageSiteProduct)
+                websiteName: ${{variables.webSiteProduct}}
+                packageName: ${{variables.packageProduct}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteReceivingCountry)
-                packageName: $(packageSiteReceivingCountry)
+                websiteName: ${{variables.webSiteReceivingCountry}}
+                packageName: ${{variables.packageReceivingCountry}}
 
             - template: deploy-web.yml
               parameters:
-                websiteName: $(webSiteTallySheet)
-                packageName: $(packageSiteTallySheet)
+                websiteName: ${{variables.webSiteTallySheet}}
+                packageName: ${{variables.packageTallySheet}}
                 
             - task: IISWebAppManagementOnMachineGroup@0
               displayName: 'Start Application Pool'
