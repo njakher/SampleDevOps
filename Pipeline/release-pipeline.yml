@@ -2,13 +2,53 @@
 
 parameters:
   - name: webApplication
-    displayName: Web Application
-    type: string
+    displayName: All Application
+    type: bool
     default: All
     values:
     - All
     - AdditionalTariff
     - B2B
+    
+  - name: additionalTariff
+    displayName: AdditionalTariff
+    type: boolean
+    default: true
+    
+  - name: b2b
+    displayName: B2B
+    type: boolean
+    default: true
+    
+  - name: businessPartner
+    displayName: BusinessPartner
+    type: boolean
+    default: true
+    
+  - name: customsInventory
+    displayName: CustomsInventory
+    type: boolean
+    default: true
+    
+  - name: declarationSetting
+    displayName: DeclarationSetting
+    type: boolean
+    default: true
+    
+  - name: declarationStatus
+    displayName: DeclarationStatus
+    type: boolean
+    default: true
+    
+  - name: dropDownValues
+    displayName: DropDownValues
+    type: boolean
+    default: true
+    
+  - name: lotAndJobNumber
+    displayName: LotAndJobNumber
+    type: boolean
+    default: true
 
 name: XCO_Release_$(Date:yyyymmdd)$(Rev:r)
 
