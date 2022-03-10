@@ -33,7 +33,7 @@ stages:
             
             - template: deploy-web.yml
               parameters:
-                websiteName: ${{webSiteAdditionalTariff}}
+                websiteName: ${{variables.webSiteAdditionalTariff}}
                 packageName: ${{variables.packageSiteAdditionalTariff}}
 
             - template: deploy-web.yml
