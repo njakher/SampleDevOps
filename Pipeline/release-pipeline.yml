@@ -1,14 +1,6 @@
 # Description: Release pipleline.
 
 parameters:
-  - name: webApplication
-    displayName: All Application
-    type: bool
-    default: All
-    values:
-    - All
-    - AdditionalTariff
-    - B2B
     
   - name: additionalTariff
     displayName: AdditionalTariff
