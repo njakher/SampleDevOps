@@ -40,7 +40,6 @@ stages:
                 websiteName: ${{variables.webSiteAdditionalTariff}}
                 packageName: ${{variables.packageAdditionalTariff}}
 
-            - ${{ if eq(parameters.applications.b2b, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteB2B}}

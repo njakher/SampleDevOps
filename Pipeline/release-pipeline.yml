@@ -123,9 +123,13 @@ stages:
 
      steps:
      
-#      - template: ./Templates/param-test.yml
-#        parameters:
-#          webApplication: ${{parameters.webApplication}}
+      - template: ./Templates/param-test.yml
+        parameters:
+          webApplication: ${{parameters.webApplication}}
+          applications:
+            b2b: ${{parameters.b2b}}
+            receivingCountry: ${{parameters.receivingCountry}}
+
       
       - task: UseDotNet@2
         displayName: 'Use .NET Core sdk'
