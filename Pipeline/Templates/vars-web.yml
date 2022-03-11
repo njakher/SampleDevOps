@@ -31,7 +31,7 @@ variables:
 #  packageReceivingCountry: 'ReceivingCountry'
 #  packageTallySheet: 'TallySheet'
   
-  packageAdditionalTariff: 'web3.zip'
+  packageAdditionalTariff: 'web1.zip'
   packageB2B: 'web1.zip' 
   packageBusinessPartner: 'web1.zip'
   packageCustomsInventory: 'web1.zip'
