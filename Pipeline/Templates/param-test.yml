@@ -12,5 +12,5 @@ parameters:
 steps:
 - ${{ each p in parameters.project }}:
   - script: 'echo building $${{ p }}'
-  - script: 'echo building $${{ parameters.applications }}'
+  - script: 'echo building $${{ parameters.applications.b2b }}'
     
