@@ -125,7 +125,7 @@ stages:
      
       - template: ./Templates/param-test.yml
         parameters:
-          webApplication: ${{parameters.webApplication}}
+          webApplication: ${{parameters.b2b}}
           applications:
             b2b: ${{parameters.b2b}}
             receivingCountry: ${{parameters.receivingCountry}}
