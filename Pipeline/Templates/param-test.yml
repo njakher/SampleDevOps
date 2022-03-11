@@ -13,4 +13,10 @@ steps:
 - ${{ each p in parameters.project }}:
   - script: 'echo building $${{ p }}'
   - script: 'echo building $${{ parameters.applications.b2b }}'
+  
+- ${{ if eq(parameters.applications.b2b, true) }}:
+  - script: 'echo building true'  
+
+- ${{ if eq(parameters.applications.b2b, True) }}:
+  - script: 'echo building True'  
     
