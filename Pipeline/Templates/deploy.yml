@@ -5,6 +5,7 @@ parameters:
   type: string
 - name: 'applications' 
   type: object  
+  default: []  
 
 stages:
 - stage: ${{ parameters.stageName }}
