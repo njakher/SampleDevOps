@@ -158,6 +158,8 @@ stages:
    parameters:
     stageName: local
     environment: local
+    applications:
+      b2b: ${{parameters.b2b}}
 
 
 # Comment in the end
