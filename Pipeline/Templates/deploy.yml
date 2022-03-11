@@ -5,7 +5,6 @@ parameters:
   type: string
 - name: 'applications' 
   type: object  
-  default: []  
 
 stages:
 - stage: ${{ parameters.stageName }}
@@ -35,61 +34,73 @@ stages:
                 ActionIISApplicationPool: 'StopAppPool'
                 StartStopRecycleAppPoolName: 'mcoapi'
             
+            - ${{ if eq(parameters.applications.additionalTariff, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteAdditionalTariff}}
                 packageName: ${{variables.packageAdditionalTariff}}
 
+            - ${{ if eq(parameters.applications.b2b, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteB2B}}
                 packageName: ${{variables.packageB2B}}
 
+            - ${{ if eq(parameters.applications.businessPartner, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteBusinessPartner}}
                 packageName: ${{variables.packageBusinessPartner}}
 
+            - ${{ if eq(parameters.applications.customsInventory, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteCustomsInventory}}
                 packageName: ${{variables.packageCustomsInventory}}
 
+            - ${{ if eq(parameters.applications.declarationSetting, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteDeclarationSetting}}
                 packageName: ${{variables.packageDeclarationSetting}}
 
+            - ${{ if eq(parameters.applications.declarationStatus, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteDeclarationStatus}}
                 packageName: ${{variables.packageDeclarationStatus}}
 
+            - ${{ if eq(parameters.applications.dropDownValues, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteDropDownValues}}
                 packageName: ${{variables.packageDropDownValues}}
 
+            - ${{ if eq(parameters.applications.lotAndJobNumber, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteLotAndJobNumber}}
                 packageName: ${{variables.packageLotAndJobNumber}}
 
+            - ${{ if eq(parameters.applications.mco, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteMCO}}
                 packageName: ${{variables.packageMCO}}
 
+            - ${{ if eq(parameters.applications.product, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteProduct}}
                 packageName: ${{variables.packageProduct}}
 
+            - ${{ if eq(parameters.applications.receivingCountry, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteReceivingCountry}}
                 packageName: ${{variables.packageReceivingCountry}}
 
+            - ${{ if eq(parameters.applications.tallySheet, true) }}:
             - template: deploy-web.yml
               parameters:
                 websiteName: ${{variables.webSiteTallySheet}}

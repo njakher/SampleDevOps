@@ -37,7 +37,7 @@ parameters:
     type: boolean
     default: true
     
-  - name: lotAndJobNumber 
+  - name: lotAndJobNumber
     displayName: LotAndJobNumber Api
     type: boolean
     default: true
@@ -123,14 +123,33 @@ stages:
 
      steps:
      
-      - template: ./Templates/param-test.yml
-        parameters:
-          webApplication: ${{parameters.b2b}}
-          applications:
-            b2b: ${{parameters.b2b}}
-            receivingCountry: ${{parameters.receivingCountry}}
+#      - template: ./Templates/param-test.yml
+#        parameters:
+#          webApplication: ${{parameters.b2b}}
+#          applications:
+#           additionalTariff: ${{parameters.additionalTariff}}
+#           b2b: ${{parameters.b2b}}
+#           businessPartner: ${{parameters.businessPartner}}
+#           customsInventory: ${{parameters.customsInventory}}
+#           declarationSetting: ${{parameters.declarationSetting}} 
+#           declarationStatus: ${{parameters.declarationStatus}}            
+#           dropDownValues: ${{parameters.dropDownValues}} 
+#           lotAndJobNumber: ${{parameters.lotAndJobNumber}} 
+#           mco: ${{parameters.mco}} 
+#           product: ${{parameters.product}} 
+#           receivingCountry: ${{parameters.receivingCountry}} 
+#           tallySheet: ${{parameters.tallySheet}} 
+#           acknowledge: ${{parameters.acknowledge}} 
+#           partnerService: ${{parameters.partnerService}} 
+#           consignmentService: ${{parameters.consignmentService}}
+#           declarationService: ${{parameters.declarationService}}            
+#           notificationService: ${{parameters.notificationService}}
+#           classificationService: ${{parameters.classificationService}}
+#           shipmentService: ${{parameters.shipmentService}}
+#           itemService: ${{parameters.itemService}}
+            
 
-      
+                  
       - task: UseDotNet@2
         displayName: 'Use .NET Core sdk'
         inputs:
@@ -163,7 +182,26 @@ stages:
     stageName: local
     environment: local
     applications:
+      additionalTariff: ${{parameters.additionalTariff}}
       b2b: ${{parameters.b2b}}
+      businessPartner: ${{parameters.businessPartner}}
+      customsInventory: ${{parameters.customsInventory}}
+      declarationSetting: ${{parameters.declarationSetting}} 
+      declarationStatus: ${{parameters.declarationStatus}}            
+      dropDownValues: ${{parameters.dropDownValues}} 
+      lotAndJobNumber: ${{parameters.lotAndJobNumber}} 
+      mco: ${{parameters.mco}} 
+      product: ${{parameters.product}} 
+      receivingCountry: ${{parameters.receivingCountry}} 
+      tallySheet: ${{parameters.tallySheet}} 
+      acknowledge: ${{parameters.acknowledge}} 
+      partnerService: ${{parameters.partnerService}} 
+      consignmentService: ${{parameters.consignmentService}}
+      declarationService: ${{parameters.declarationService}}            
+      notificationService: ${{parameters.notificationService}}
+      classificationService: ${{parameters.classificationService}}
+      shipmentService: ${{parameters.shipmentService}}
+      itemService: ${{parameters.itemService}}
 
 
 # Comment in the end
