@@ -8,7 +8,7 @@ parameters:
 
 stages:
 - stage: ${{ parameters.stageName }}
-  displayName: 'Deploy  ${{ parameters.stageName }}'
+  displayName: ${{ parameters.stageName }} #'Deploy  ${{ parameters.stageName }}'
   jobs:
   - deployment: deploymentProd1
     displayName: 'Deployment'
