@@ -35,10 +35,10 @@ stages:
                 StartStopRecycleAppPoolName: 'mcoapi'
             
             - ${{ if eq(parameters.applications.additionalTariff, true) }}:
-            - template: deploy-web.yml
-              parameters:
-                websiteName: ${{variables.webSiteAdditionalTariff}}
-                packageName: ${{variables.packageAdditionalTariff}}
+              - template: deploy-web.yml
+                parameters:
+                  websiteName: ${{variables.webSiteAdditionalTariff}}
+                  packageName: ${{variables.packageAdditionalTariff}}
 
             - ${{ if eq(parameters.applications.b2b, true) }}:
             - template: deploy-web.yml
