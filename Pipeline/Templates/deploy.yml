@@ -32,7 +32,7 @@ stages:
               inputs:
                 IISDeploymentType: 'IISApplicationPool'
                 ActionIISApplicationPool: 'StopAppPool'
-                StartStopRecycleAppPoolName: 'mcoapi'
+                StartStopRecycleAppPoolName: ${{variables.applicationPoolApi}}
             
             - ${{ if eq(parameters.applications.additionalTariff, true) }}:
               - template: deploy-web.yml
@@ -111,7 +111,7 @@ stages:
               inputs:
                 IISDeploymentType: 'IISApplicationPool'
                 ActionIISApplicationPool: 'StartAppPool'
-                StartStopRecycleAppPoolName: 'mcoapi'
+                StartStopRecycleAppPoolName: ${{variables.applicationPoolApi}}
             
             - task: ExtractFiles@1
               displayName: 'Extract File'

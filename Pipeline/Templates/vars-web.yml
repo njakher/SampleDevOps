@@ -1,6 +1,10 @@
 # File: vars.yml
 
 variables:
+
+  applicationPoolWeb: 'mco'
+  applicationPoolApi: 'mcoapi'
+  
   webSiteAdditionalTariff: 'AdditionalTariff'
   webSiteB2B: 'B2B' 
   webSiteBusinessPartner: 'BusinessPartner'
