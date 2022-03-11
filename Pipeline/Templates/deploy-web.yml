@@ -12,3 +12,4 @@ steps:
     Package: 'C:\azagent\A1\_work\1\drop\${{ parameters.packageName }}'
     RemoveAdditionalFilesFlag: true
     TakeAppOfflineFlag: true
+    XmlTransformation: true

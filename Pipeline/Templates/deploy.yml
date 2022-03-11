@@ -113,13 +113,13 @@ stages:
                 ActionIISApplicationPool: 'StartAppPool'
                 StartStopRecycleAppPoolName: ${{variables.applicationPoolApi}}
             
-            - task: ExtractFiles@1
-              displayName: 'Extract File'
-              inputs:
-                archiveFilePatterns: 'C:\azagent\A1\_work\1\drop\*.zip'
-                destinationFolder: ${{variables.serviceBasePath}}
-                cleanDestinationFolder: true
-                overwriteExistingFiles: false         
+#            - task: ExtractFiles@1
+#              displayName: 'Extract File'
+#              inputs:
+#                archiveFilePatterns: 'C:\azagent\A1\_work\1\drop\*.zip'
+#                destinationFolder: ${{variables.serviceBasePath}}
+#                cleanDestinationFolder: true
+#                overwriteExistingFiles: false         
                 
           on: 
             failure: 
