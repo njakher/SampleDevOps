@@ -4,6 +4,7 @@ parameters:
   default:
     - Web1
     - Web2
+    - Web3
 
 steps:
 - ${{ each p in parameters.project }}:
