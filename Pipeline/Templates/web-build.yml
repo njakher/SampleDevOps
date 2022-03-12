@@ -11,20 +11,34 @@ steps:
 # Required to support config transformation for stages 
 #
 
+#  - task: MSBuild@1
+#    inputs:
+#        solution: '${{parameters.project}}'
+#        msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\${{parameters.packageName}} /p:TransformWebConfigEnabled=false /p:AutoParameterizationWebConfigConnectionStrings=False /p:MarkWebConfigAssistFilesAsExclude=false /p:ProfileTransformWebConfigEnabled=false /p:IsTransformWebConfigDisabled=true'
+#        platform: '$(projectBuildPlatform)'
+#        configuration: '$(buildConfiguration)'
+        
   - task: MSBuild@1
     inputs:
         solution: '${{parameters.project}}'
-        msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\${{parameters.packageName}} 
-        /p:TransformWebConfigEnabled=false /p:AutoParameterizationWebConfigConnectionStrings=False /p:MarkWebConfigAssistFilesAsExclude=false
-        /p:ProfileTransformWebConfigEnabled=false /p:IsTransformWebConfigDisabled=true'
+        msbuildArguments: '/p:DeployOnBuild=True 
+        /p:WebPublishMethod=Package 
+        /p:PackageAsSingleFile=true
+        /p:SkipInvalidConfigurations=true
+        /p:PackageLocation=$(Build.ArtifactStagingDirectory)\${{parameters.packageName}}
+        /p:TransformWebConfigEnabled=false
+        /p:AutoParameterizationWebConfigConnectionStrings=false
+        /p:MarkWebConfigAssistFilesAsExclude=false
+        /p:ProfileTransformWebConfigEnabled=false
+        /p:IsTransformWebConfigDisabled=true'
         platform: '$(projectBuildPlatform)'
         configuration: '$(buildConfiguration)'
 
-  - task: ArchiveFiles@2
-    inputs:
-        rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/${{parameters.packageName}}'
-        includeRootFolder: false
-        archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/package/${{parameters.packageName}}.zip'
-        replaceExistingArchive: true
+# - task: ArchiveFiles@2
+#   inputs:
+#       rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/${{parameters.packageName}}'
+#       includeRootFolder: false
+#       archiveType: 'zip'
+#       archiveFile: '$(Build.ArtifactStagingDirectory)/package/${{parameters.packageName}}.zip'
+#       replaceExistingArchive: true
       
