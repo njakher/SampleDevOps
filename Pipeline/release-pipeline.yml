@@ -179,8 +179,26 @@ stages:
 #          solution: '$(solution)'
 #          platform: '$(buildPlatform)'
 #          configuration: '$(buildConfiguration)'
-            
-      - template: ./Templates/multiproject-web-build.yml
+ 
+      - task: MSBuild@1
+        inputs:
+            solution: '**/WebSolution.sln'
+            msbuildArguments: '/p:DeployOnBuild=True 
+            /p:WebPublishMethod=Package 
+            /p:PackageAsSingleFile=true
+            /p:SkipInvalidConfigurations=true
+            /p:PackageLocation=$(Build.ArtifactStagingDirectory)\package\${{parameters.packageName}}
+            /p:TransformWebConfigEnabled=false
+            /p:AutoParameterizationWebConfigConnectionStrings=false
+            /p:MarkWebConfigAssistFilesAsExclude=false
+            /p:ProfileTransformWebConfigEnabled=false
+            /p:IsTransformWebConfigDisabled=true'
+            platform: '$(projectBuildPlatform)'
+            configuration: '$(buildConfiguration)'
+
+
+ 
+#      - template: ./Templates/multiproject-web-build.yml
 #      - template: ./Templates/multiproject-windows-build.yml
 
 #      - task: PublishBuildArtifacts@1
