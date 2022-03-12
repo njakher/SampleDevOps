@@ -1,0 +1,49 @@
+parameters:
+- name: 'stageName'
+  type: string
+- name: 'environment'
+  type: string
+
+stages:
+- stage: Local
+  displayName: ${{ parameters.stageName }} #'Deploy  ${{ parameters.stageName }}'
+  jobs:
+  - deployment: Xyz
+    displayName: 'Deployment'
+    timeoutInMinutes: 10
+    variables:
+      - template: ./vars-web.yml
+      - template: ./vars-windows.yml      
+    environment: 
+      name: ${{ parameters.environment }}
+      resourceType: VirtualMachine
+    strategy: 
+        runOnce:
+          preDeploy:
+            steps:
+            - script: echo initialize, cleanup, backup, install certs
+          deploy:
+            steps:
+            
+             - task: FileTransform@1
+               inputs:
+                 folderPath: 'C:\azagent\A1\_work\1\drop\ConfigTest.zip'
+                 enableXmlTransform: true
+                 xmlTransformationRules: '-transform **\Web.Local.config -xml **\Web.config'
+
+            
+#            - task: ExtractFiles@1
+#              displayName: 'Extract File'
+#              inputs:
+#                archiveFilePatterns: 'C:\azagent\A1\_work\1\drop\*.zip'
+#                destinationFolder: ${{variables.serviceBasePath}}
+#                cleanDestinationFolder: true
+#                overwriteExistingFiles: false         
+                
+          on: 
+            failure: 
+              steps: 
+              - script: echo clean-up, rollback...   
+            success: 
+              steps: 
+              - script: echo checks passed, notify...

@@ -111,6 +111,12 @@ variables:
 - template: ./Templates/vars.yml
   
 stages: 
+
+- template: ./Templates/deploy-test.yml
+   parameters:
+    stageName: local
+    environment: local
+    
  - stage: build
    displayName: 'Build Solution'
    jobs:
@@ -186,8 +192,8 @@ stages:
       
  - template: ./Templates/deploy.yml
    parameters:
-    stageName: local
-    environment: local
+    stageName: localXX
+    environment: localXX
     applications:
       additionalTariff: ${{parameters.additionalTariff}}
       b2b: ${{parameters.b2b}}
