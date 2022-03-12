@@ -176,6 +176,13 @@ stages:
             
       - template: ./Templates/multiproject-web-build.yml
 #      - template: ./Templates/multiproject-windows-build.yml
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifacts'
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)\package'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
       
  - template: ./Templates/deploy.yml
    parameters:
