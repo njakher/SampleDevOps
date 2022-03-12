@@ -9,7 +9,7 @@ steps:
   displayName: ${{ parameters.websiteName }}
   inputs:
     WebSiteName: ${{ parameters.websiteName }}
-    Package: '$(Pipeline.Workspace)/drop/web1.zip' 
+    Package: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}' 
     RemoveAdditionalFilesFlag: true
     TakeAppOfflineFlag: true
     XmlTransformation: true
