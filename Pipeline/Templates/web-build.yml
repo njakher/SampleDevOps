@@ -6,10 +6,16 @@ parameters:
 
 steps:
 
+# /p:TransformWebConfigEnabled=False 
+# /p:AutoParameterizationWebConfigConnectionStrings=False
+# Required to support config transformation for stages 
+#
+
   - task: MSBuild@1
     inputs:
         solution: '${{parameters.project}}'
-        msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\${{parameters.packageName}}'
+        msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\${{parameters.packageName}} 
+        /p:TransformWebConfigEnabled=False /p:AutoParameterizationWebConfigConnectionStrings=False'
         platform: '$(projectBuildPlatform)'
         configuration: '$(buildConfiguration)'
 
