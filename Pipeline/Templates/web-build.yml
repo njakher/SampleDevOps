@@ -25,7 +25,7 @@ steps:
         /p:WebPublishMethod=Package 
         /p:PackageAsSingleFile=true
         /p:SkipInvalidConfigurations=true
-        /p:PackageLocation=$(Build.ArtifactStagingDirectory)\${{parameters.packageName}}
+        /p:PackageLocation=$(Build.ArtifactStagingDirectory)\package\${{parameters.packageName}}
         /p:TransformWebConfigEnabled=false
         /p:AutoParameterizationWebConfigConnectionStrings=false
         /p:MarkWebConfigAssistFilesAsExclude=false
