@@ -187,7 +187,7 @@ stages:
             /p:WebPublishMethod=Package 
             /p:PackageAsSingleFile=true
             /p:SkipInvalidConfigurations=true
-            /p:PackageLocation=$(Build.ArtifactStagingDirectory)\package\${{parameters.packageName}}
+            /p:PackageLocation=$(Build.ArtifactStagingDirectory)
             /p:TransformWebConfigEnabled=false
             /p:AutoParameterizationWebConfigConnectionStrings=false
             /p:MarkWebConfigAssistFilesAsExclude=false
@@ -211,7 +211,7 @@ stages:
       - task: PublishPipelineArtifact@1
         displayName: 'Publish Artifacts'
         inputs:
-          targetPath: '$(Build.ArtifactStagingDirectory)\package'
+          targetPath: '$(Build.ArtifactStagingDirectory)'
           artifact: 'drop'
           publishLocation: 'pipeline'
       
