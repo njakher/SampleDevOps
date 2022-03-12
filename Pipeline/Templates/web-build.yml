@@ -15,7 +15,8 @@ steps:
     inputs:
         solution: '${{parameters.project}}'
         msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\${{parameters.packageName}} 
-        /p:TransformWebConfigEnabled=False /p:AutoParameterizationWebConfigConnectionStrings=False'
+        /p:TransformWebConfigEnabled=false /p:AutoParameterizationWebConfigConnectionStrings=False /p:MarkWebConfigAssistFilesAsExclude=false
+        /p:ProfileTransformWebConfigEnabled=false /p:IsTransformWebConfigDisabled=true'
         platform: '$(projectBuildPlatform)'
         configuration: '$(buildConfiguration)'
 

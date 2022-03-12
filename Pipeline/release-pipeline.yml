@@ -173,12 +173,12 @@ stages:
             restoreSolution: $(solution)
             feedsToUse: 'select'
 
-      - task: VSBuild@1
-        displayName: 'Build Solution' 
-        inputs:
-          solution: '$(solution)'
-          platform: '$(buildPlatform)'
-          configuration: '$(buildConfiguration)'
+#      - task: VSBuild@1
+#        displayName: 'Build Solution' 
+#        inputs:
+#          solution: '$(solution)'
+#          platform: '$(buildPlatform)'
+#          configuration: '$(buildConfiguration)'
             
       - template: ./Templates/multiproject-web-build.yml
 #      - template: ./Templates/multiproject-windows-build.yml
@@ -199,7 +199,7 @@ stages:
       
  - template: ./Templates/deploy.yml
    parameters:
-     stageName: local
+     stageName: Local
      environment: local
      applications:
        additionalTariff: ${{parameters.additionalTariff}}

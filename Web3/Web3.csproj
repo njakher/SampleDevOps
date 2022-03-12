@@ -53,11 +53,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-	<Content Include="Web.Local.config">         
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-	<Content Include="Web.Release.config">         
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="Web.Local.config">
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

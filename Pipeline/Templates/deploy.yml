@@ -7,7 +7,7 @@ parameters:
   type: object  
 
 stages:
-- stage: ${{ parameters.stageName }}
+- stage: Local
   displayName: ${{ parameters.stageName }} #'Deploy  ${{ parameters.stageName }}'
   jobs:
   - deployment: deploymentProd1
