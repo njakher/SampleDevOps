@@ -112,7 +112,7 @@ variables:
   
 stages: 
 
-- template: ./Templates/deploy-test.yml
+ - template: ./Templates/deploy-test.yml
    parameters:
     stageName: local
     environment: local
