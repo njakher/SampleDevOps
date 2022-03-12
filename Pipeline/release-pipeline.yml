@@ -112,10 +112,10 @@ variables:
   
 stages: 
 
- - template: ./Templates/deploy-test.yml
-   parameters:
-    stageName: local
-    environment: local
+# - template: ./Templates/deploy-test.yml
+#   parameters:
+#    stageName: local
+#    environment: local
     
  - stage: build
    displayName: 'Build Solution'
@@ -183,38 +183,45 @@ stages:
       - template: ./Templates/multiproject-web-build.yml
 #      - template: ./Templates/multiproject-windows-build.yml
 
-      - task: PublishBuildArtifacts@1
+#      - task: PublishBuildArtifacts@1
+#        displayName: 'Publish Artifacts'
+#        inputs:
+#          PathtoPublish: '$(Build.ArtifactStagingDirectory)\package'
+#          ArtifactName: 'drop'
+#          publishLocation: 'Container'
+          
+      - task: PublishPipelineArtifact@1
         displayName: 'Publish Artifacts'
         inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)\package'
-          ArtifactName: 'drop'
-          publishLocation: 'Container'
+          targetPath: '$(Build.ArtifactStagingDirectory)\package'
+          artifact: 'drop'
+          publishLocation: 'pipeline'
       
-# - template: ./Templates/deploy.yml
-#  parameters:
-#   stageName: localXX
-#   environment: localXX
-#   applications:
-#     additionalTariff: ${{parameters.additionalTariff}}
-#     b2b: ${{parameters.b2b}}
-#     businessPartner: ${{parameters.businessPartner}}
-#     customsInventory: ${{parameters.customsInventory}}
-#     declarationSetting: ${{parameters.declarationSetting}} 
-#     declarationStatus: ${{parameters.declarationStatus}}            
-#     dropDownValues: ${{parameters.dropDownValues}} 
-#     lotAndJobNumber: ${{parameters.lotAndJobNumber}} 
-#     mco: ${{parameters.mco}} 
-#     product: ${{parameters.product}} 
-#     receivingCountry: ${{parameters.receivingCountry}} 
-#     tallySheet: ${{parameters.tallySheet}} 
-#     acknowledge: ${{parameters.acknowledge}} 
-#     partnerService: ${{parameters.partnerService}} 
-#     consignmentService: ${{parameters.consignmentService}}
-#     declarationService: ${{parameters.declarationService}}            
-#     notificationService: ${{parameters.notificationService}}
-#     classificationService: ${{parameters.classificationService}}
-#     shipmentService: ${{parameters.shipmentService}}
-#     itemService: ${{parameters.itemService}}
+ - template: ./Templates/deploy.yml
+   parameters:
+     stageName: local
+     environment: local
+     applications:
+       additionalTariff: ${{parameters.additionalTariff}}
+       b2b: ${{parameters.b2b}}
+       businessPartner: ${{parameters.businessPartner}}
+       customsInventory: ${{parameters.customsInventory}}
+       declarationSetting: ${{parameters.declarationSetting}} 
+       declarationStatus: ${{parameters.declarationStatus}}            
+       dropDownValues: ${{parameters.dropDownValues}} 
+       lotAndJobNumber: ${{parameters.lotAndJobNumber}} 
+       mco: ${{parameters.mco}} 
+       product: ${{parameters.product}} 
+       receivingCountry: ${{parameters.receivingCountry}} 
+       tallySheet: ${{parameters.tallySheet}} 
+       acknowledge: ${{parameters.acknowledge}} 
+       partnerService: ${{parameters.partnerService}} 
+       consignmentService: ${{parameters.consignmentService}}
+       declarationService: ${{parameters.declarationService}}            
+       notificationService: ${{parameters.notificationService}}
+       classificationService: ${{parameters.classificationService}}
+       shipmentService: ${{parameters.shipmentService}}
+       itemService: ${{parameters.itemService}}
 
 
 # Comment in the end

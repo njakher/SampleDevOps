@@ -9,7 +9,7 @@ steps:
   displayName: ${{ parameters.websiteName }}
   inputs:
     WebSiteName: ${{ parameters.websiteName }}
-    Package: 'C:\azagent\A1\_work\1\drop\${{ parameters.packageName }}'
+    Package: ' $(Pipeline.Workspace)/${{ parameters.packageName }}'
     RemoveAdditionalFilesFlag: true
     TakeAppOfflineFlag: true
     XmlTransformation: true

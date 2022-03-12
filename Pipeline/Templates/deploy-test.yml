@@ -24,12 +24,14 @@ stages:
             - script: echo initialize, cleanup, backup, install certs
           deploy:
             steps:
-            
-             - task: FileTransform@1
-               inputs:
-                 folderPath: 'C:\azagent\A1\_work\1\drop\ConfigTest.zip'
-                 enableXmlTransform: true
-                 xmlTransformationRules: '-transform **\Web.Local.config -xml **\Web.config'
+
+ 
+#            # Step for config transformation    
+#             - task: FileTransform@1
+#               inputs:
+#                 folderPath: 'C:\azagent\A1\_work\1\drop\ConfigTest.zip'
+#                 enableXmlTransform: true
+#                 xmlTransformationRules: '-transform **\*.Local.exe.config -xml **\*.exe.config'
 
             
 #            - task: ExtractFiles@1
