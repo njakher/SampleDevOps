@@ -6,8 +6,9 @@ steps:
     IISDeploymentType: 'IISWebsite'
     ActionIISWebsite: 'CreateOrUpdateWebsite'
     WebsiteName:  $(webSiteAdditionalTariff)
-    WebsitePhysicalPath: '$(variables.webSiteBasePath)\$(variables.webSiteAdditionalTariff)'
+    WebsitePhysicalPath: '$(webSiteBasePath)\$(webSiteAdditionalTariff)'
     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
+    AppPoolNameForWebsite: '$(applicationPoolWeb)'
     AddBinding: true
     Bindings: |
                   {
