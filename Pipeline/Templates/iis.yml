@@ -6,7 +6,7 @@ steps:
     IISDeploymentType: 'IISWebsite'
     ActionIISWebsite: 'CreateOrUpdateWebsite'
     WebsiteName:  $(webSiteAdditionalTariff)
-    WebsitePhysicalPath: '${{webSiteBasePath}}\${{variables.webSiteAdditionalTariff}}'
+    WebsitePhysicalPath: '${{variables.webSiteBasePath}}\${{variables.webSiteAdditionalTariff}}'
     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
     AddBinding: true
     Bindings: |
