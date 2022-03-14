@@ -7,8 +7,8 @@ parameters:
   type: object  
 
 stages:
-- stage: Local
-  displayName: ${{ parameters.stageName }} #'Deploy  ${{ parameters.stageName }}'
+- stage: ${{ parameters.stageName }}
+  displayName: 'Deploy  ${{ parameters.stageName }}'
   jobs:
   - deployment: deploymentProd1
     displayName: 'Deployment'
@@ -27,12 +27,12 @@ stages:
           deploy:
             steps:
             
-            - task: IISWebAppManagementOnMachineGroup@0
-              displayName: 'Stop Application Pool'
-              inputs:
-                IISDeploymentType: 'IISApplicationPool'
-                ActionIISApplicationPool: 'StopAppPool'
-                StartStopRecycleAppPoolName: ${{variables.applicationPoolApi}}
+#            - task: IISWebAppManagementOnMachineGroup@0
+#              displayName: 'Stop Application Pool'
+#              inputs:
+#                IISDeploymentType: 'IISApplicationPool'
+#                ActionIISApplicationPool: 'StopAppPool'
+#                StartStopRecycleAppPoolName: ${{variables.applicationPoolApi}}
             
             - ${{ if eq(parameters.applications.additionalTariff, true) }}:
               - template: deploy-web.yml
@@ -107,19 +107,51 @@ stages:
                   packageName: ${{variables.packageTallySheet}}
                 
             - task: IISWebAppManagementOnMachineGroup@0
-              displayName: 'Start Application Pool'
+              displayName: 'Recycle Application Pool'
               inputs:
                 IISDeploymentType: 'IISApplicationPool'
-                ActionIISApplicationPool: 'StartAppPool'
+                ActionIISApplicationPool: 'RecycleAppPool'
                 StartStopRecycleAppPoolName: ${{variables.applicationPoolApi}}
-            
-#            - task: ExtractFiles@1
-#              displayName: 'Extract File'
-#              inputs:
-#                archiveFilePatterns: 'C:\azagent\A1\_work\1\drop\*.zip'
-#                destinationFolder: ${{variables.serviceBasePath}}
-#                cleanDestinationFolder: true
-#                overwriteExistingFiles: false         
+                
+            - ${{ if eq(parameters.applications.parameters.acknowledge, true) }}:
+              - template: deploy-windows.yml
+                parameters:
+                  packageName: ${{variables.packageServiceAcknowledge}}
+
+            - ${{ if eq(parameters.applications.parameters.partnerService, true) }}:
+              - template: deploy-windows.yml
+                parameters:
+                  packageName: ${{variables.packageServiceBusinessPartner}}
+                  
+            - ${{ if eq(parameters.applications.parameters.consignmentService, true) }}:
+              - template: deploy-windows.yml
+                parameters:
+                  packageName: ${{variables.packageServiceConsignment}}
+                  
+            - ${{ if eq(parameters.applications.parameters.declarationService, true) }}:
+              - template: deploy-windows.yml
+                parameters:
+                  packageName: ${{variables.packageServiceDeclaration}}
+
+            - ${{ if eq(parameters.applications.parameters.notificationService, true) }}:
+              - template: deploy-windows.yml
+                parameters:
+                  packageName: ${{variables.packageServiceInvoiceNotification}}
+                  
+            - ${{ if eq(parameters.applications.parameters.classificationService, true) }}:
+              - template: deploy-windows.yml
+                parameters:
+                  packageName: ${{variables.packageServiceProductClassification}}
+
+            - ${{ if eq(parameters.applications.parameters.shipmentService, true) }}:
+              - template: deploy-windows.yml
+                parameters:               
+                  packageName: ${{variables.packageServiceShipment}}
+
+            - ${{ if eq(parameters.applications.parameters.itemService, true) }}:
+              - template: deploy-windows.yml
+                parameters:          
+                  packageName: ${{variables.packageServiceWorklistItem}}
                 
           on: 
             failure: 

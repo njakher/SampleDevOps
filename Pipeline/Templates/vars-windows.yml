@@ -21,14 +21,14 @@ variables:
 #  packageShipment: 'web1.zip'
 #  packageWorklistItem: 'web1.zip'
   
-  packageAcknowledge: 'web1.zip'
-  packageBusinessPartner: 'web1.zip' 
-  packageConsignment: 'web1.zip'
-  packageDeclaration: 'web1.zip'
-  packageInvoiceNotification: 'web1.zip'
-  packageProductClassification: 'web1.zip'
-  packageShipment: 'web1.zip'
-  packageWorklistItem: 'web1.zip'
+  packageServiceAcknowledge: 'web1.zip'
+  packageServiceBusinessPartner: 'web1.zip' 
+  packageServiceConsignment: 'web1.zip'
+  packageServiceDeclaration: 'web1.zip'
+  packageServiceInvoiceNotification: 'web1.zip'
+  packageServiceProductClassification: 'web1.zip'
+  packageServiceShipment: 'web1.zip'
+  packageServiceWorklistItem: 'web1.zip'
 
   
  
