@@ -1,0 +1,29 @@
+parameters:
+- name: 'project' 
+  type: string
+- name: 'packageName' 
+  type: string
+
+steps:
+
+# /p:TransformWebConfigEnabled=False 
+# /p:AutoParameterizationWebConfigConnectionStrings=False
+# Required to support config transformation for stages 
+#
+
+  - task: MSBuild@1
+    inputs:
+        solution: '${{parameters.project}}'
+        msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\${{parameters.packageName}}'
+        platform: '$(projectBuildPlatform)'
+        configuration: '$(buildConfiguration)'
+        
+
+ - task: ArchiveFiles@2
+   inputs:
+       rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/${{parameters.packageName}}'
+       includeRootFolder: false
+       archiveType: 'zip'
+       archiveFile: '$(Build.ArtifactStagingDirectory)/package/${{parameters.packageName}}.zip'
+       replaceExistingArchive: true
+      

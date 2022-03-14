@@ -5,6 +5,13 @@ parameters:
   type: string
   
 steps:
+
+- task: FileTransform@1
+  inputs:
+    folderPath: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}'
+    enableXmlTransform: true
+    xmlTransformationRules: '-transform **\web.Local.config -xml **\web.config'
+        
 - task: IISWebAppDeploymentOnMachineGroup@0
   displayName: ${{ parameters.websiteName }}
   inputs:
@@ -12,4 +19,4 @@ steps:
     Package: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}' 
     RemoveAdditionalFilesFlag: true
     TakeAppOfflineFlag: true
-    XmlTransformation: true
+#    XmlTransformation: true

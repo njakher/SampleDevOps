@@ -111,51 +111,17 @@ variables:
 - template: ./Templates/vars.yml
   
 stages: 
-
-# - template: ./Templates/deploy-test.yml
-#   parameters:
-#    stageName: local
-#    environment: local
     
  - stage: build
    displayName: 'Build Solution'
    jobs:
    - job: 'BuildAndPublish'
      displayName: 'Build and Publish'
-#     variables:
-#      - template: ./Templates/vars-web.yml  # variables to be used later    
      pool:
       vmImage: 'windows-2022' #windows-latest
 
      steps:
-     
-#      - template: ./Templates/param-test.yml
-#        parameters:
-#          webApplication: ${{parameters.b2b}}
-#          applications:
-#           additionalTariff: ${{parameters.additionalTariff}}
-#           b2b: ${{parameters.b2b}}
-#           businessPartner: ${{parameters.businessPartner}}
-#           customsInventory: ${{parameters.customsInventory}}
-#           declarationSetting: ${{parameters.declarationSetting}} 
-#           declarationStatus: ${{parameters.declarationStatus}}            
-#           dropDownValues: ${{parameters.dropDownValues}} 
-#           lotAndJobNumber: ${{parameters.lotAndJobNumber}} 
-#           mco: ${{parameters.mco}} 
-#           product: ${{parameters.product}} 
-#           receivingCountry: ${{parameters.receivingCountry}} 
-#           tallySheet: ${{parameters.tallySheet}} 
-#           acknowledge: ${{parameters.acknowledge}} 
-#           partnerService: ${{parameters.partnerService}} 
-#           consignmentService: ${{parameters.consignmentService}}
-#           declarationService: ${{parameters.declarationService}}            
-#           notificationService: ${{parameters.notificationService}}
-#           classificationService: ${{parameters.classificationService}}
-#           shipmentService: ${{parameters.shipmentService}}
-#           itemService: ${{parameters.itemService}}
-            
-
-                  
+                       
       - task: UseDotNet@2
         displayName: 'Use .NET Core sdk'
         inputs:
@@ -173,45 +139,20 @@ stages:
             restoreSolution: $(solution)
             feedsToUse: 'select'
 
-#      - task: VSBuild@1
-#        displayName: 'Build Solution' 
-#        inputs:
-#          solution: '$(solution)'
-#          platform: '$(buildPlatform)'
-#          configuration: '$(buildConfiguration)'
- 
-      - task: MSBuild@1
+      - task: VSBuild@1
+        displayName: 'Build Solution' 
         inputs:
-            solution: '**/WebSolution.sln'
-            msbuildArguments: '/p:DeployOnBuild=True 
-            /p:WebPublishMethod=Package 
-            /p:PackageAsSingleFile=true
-            /p:SkipInvalidConfigurations=true
-            /p:PackageLocation=$(Build.ArtifactStagingDirectory)
-            /p:TransformWebConfigEnabled=false
-            /p:AutoParameterizationWebConfigConnectionStrings=false
-            /p:MarkWebConfigAssistFilesAsExclude=false
-            /p:ProfileTransformWebConfigEnabled=false
-            /p:IsTransformWebConfigDisabled=true'
-            platform: '$(projectBuildPlatform)'
-            configuration: '$(buildConfiguration)'
-
-
+          solution: '$(solution)'
+          platform: '$(buildPlatform)'
+          configuration: '$(buildConfiguration)'
  
-#      - template: ./Templates/multiproject-web-build.yml
-#      - template: ./Templates/multiproject-windows-build.yml
-
-#      - task: PublishBuildArtifacts@1
-#        displayName: 'Publish Artifacts'
-#        inputs:
-#          PathtoPublish: '$(Build.ArtifactStagingDirectory)\package'
-#          ArtifactName: 'drop'
-#          publishLocation: 'Container'
+      - template: ./Templates/multiproject-build-web.yml
+#      - template: ./Templates/multiproject-build-windows.yml
           
       - task: PublishPipelineArtifact@1
         displayName: 'Publish Artifacts'
         inputs:
-          targetPath: '$(Build.ArtifactStagingDirectory)'
+          targetPath: '$(Build.ArtifactStagingDirectory)/package'
           artifact: 'drop'
           publishLocation: 'pipeline'
       
