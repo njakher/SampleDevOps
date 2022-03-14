@@ -6,7 +6,7 @@ steps:
     IISDeploymentType: 'IISWebsite'
     ActionIISWebsite: 'CreateOrUpdateWebsite'
     WebsiteName:  $(webSiteAdditionalTariff)
-    WebsitePhysicalPath: '${{variables.webSiteBasePath}}\${{variables.webSiteAdditionalTariff}}'
+    WebsitePhysicalPath: '$(variables.webSiteBasePath)\$(variables.webSiteAdditionalTariff)'
     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
     AddBinding: true
     Bindings: |
@@ -14,7 +14,7 @@ steps:
                       bindings:[
                           {
                               "protocol":"http",
-                              "ipAddress":"",
+                              "ipAddress":"All Unassigned",
                               "hostname":"",
                               "port":"81",
                               "sslThumbprint":"",
