@@ -9,7 +9,7 @@ steps:
 - task: ExtractFiles@1
   displayName: 'Extract File'
   inputs:
-    archiveFilePatterns: '$(Pipeline.Workspace)/drop${{parameters.packageName}}'
+    archiveFilePatterns: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}'
     destinationFolder: ${{variables.serviceBasePath}}
     cleanDestinationFolder: true
     overwriteExistingFiles: false   
@@ -17,6 +17,6 @@ steps:
 - task: FileTransform@1
   displayName: 'Config Transformation'
   inputs:
-    folderPath: '$(Pipeline.Workspace)/drop${{parameters.packageName}}'
+    folderPath: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}'
     enableXmlTransform: true
     xmlTransformationRules: '-transform **\web.Local.config -xml **\web.config'        
