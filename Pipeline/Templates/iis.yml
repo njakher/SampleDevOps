@@ -8,6 +8,7 @@ steps:
     WebsiteName:  $(webSiteAdditionalTariff)
     WebsitePhysicalPath: '$(webSiteBasePath)\$(webSiteAdditionalTariff)'
     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
+    CreateOrUpdateAppPoolForWebsite: true
     AppPoolNameForWebsite: '$(applicationPoolWeb)'
     AddBinding: true
     Bindings: |
