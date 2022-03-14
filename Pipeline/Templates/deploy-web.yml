@@ -10,7 +10,7 @@ steps:
   inputs:
     folderPath: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}'
     enableXmlTransform: true
-    xmlTransformationRules: '-transform **\web.Local.config -xml **\web.config'
+    xmlTransformationRules: '-transform **\*.Local.config -xml **\*.config'
         
 - task: IISWebAppDeploymentOnMachineGroup@0
   displayName: ${{ parameters.websiteName }}
