@@ -6,6 +6,8 @@ parameters:
   
 steps:
 
+# https://github.com/microsoft/azure-pipelines-tasks/issues/11322
+
 - task: FileTransform@1
   inputs:
     folderPath: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}'
@@ -19,4 +21,3 @@ steps:
     Package: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}' 
     RemoveAdditionalFilesFlag: true
     TakeAppOfflineFlag: true
-#    XmlTransformation: true

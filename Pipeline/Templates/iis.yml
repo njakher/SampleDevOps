@@ -1,0 +1,25 @@
+  
+steps:
+
+- task: IISWebAppManagementOnMachineGroup@0
+  inputs:
+    IISDeploymentType: 'IISWebsite'
+    ActionIISWebsite: 'CreateOrUpdateWebsite'
+    WebsiteName:  ${{variables.webSiteAdditionalTariff}}
+    WebsitePhysicalPath: '${{variables.webSiteBasePath}}\${{variables.webSiteAdditionalTariff}}'
+    WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
+    AddBinding: true
+    Bindings: |
+                  {
+                      bindings:[
+                          {
+                              "protocol":"http",
+                              "ipAddress":"",
+                              "hostname":"",
+                              "port":"81",
+                              "sslThumbprint":"",
+                              "sniFlag":false
+                          }
+                      ]
+                  }  
+

@@ -27,6 +27,8 @@ stages:
           deploy:
             steps:
             
+            - template: iis.yml
+            
 #            - task: IISWebAppManagementOnMachineGroup@0
 #              displayName: 'Stop Application Pool'
 #              inputs:
