@@ -41,6 +41,8 @@ parameters:
 
 steps:
 
+- script: 'echo building $${{ parameters.applications.tallySheet.deploy }}'
+
 - ${{ each p in parameters.applications }}:
   - ${{ if eq(p.deploy, true) }}:
     - script: 'echo building $${{ p.deploy }}'
