@@ -1,0 +1,21 @@
+# Deploys application pool
+  
+steps:
+
+- task: IISWebAppManagementOnMachineGroup@0
+  inputs:
+    IISDeploymentType: 'IISApplicationPool'
+    ActionIISApplicationPool: 'CreateOrUpdateAppPool'
+    AppPoolName: 'mco'
+    DotNetVersion: 'v4.0'
+    PipeLineMode: 'Integrated'
+    AppPoolIdentity: 'ApplicationPoolIdentity'
+
+- task: IISWebAppManagementOnMachineGroup@0
+  inputs:
+    IISDeploymentType: 'IISApplicationPool'
+    ActionIISApplicationPool: 'CreateOrUpdateAppPool'
+    AppPoolName: 'mcoapi'
+    DotNetVersion: 'v4.0'
+    PipeLineMode: 'Integrated'
+    AppPoolIdentity: 'ApplicationPoolIdentity'    
