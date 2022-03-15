@@ -14,4 +14,4 @@ steps:
 - script: 'echo building $${{ parameters.applications.tallySheet.deploy }}'
 
 - ${{ each p in parameters.projectinfo }}:
-  - script: 'abc echo building $${{ p.project }}'
+  - script: 'echo building123 $${{ p.project }}'
