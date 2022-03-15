@@ -21,6 +21,7 @@ parameters:
 steps:
 
 - task: IISWebAppManagementOnMachineGroup@0
+  displayName: '${{ parameters.websiteName }}:Create or Update Website' 
   condition: eq(${{parameters.includehttps}}, false) 
   inputs:
     IISDeploymentType: 'IISWebsite'
@@ -46,6 +47,7 @@ steps:
                   }  
 
 - task: IISWebAppManagementOnMachineGroup@0
+  displayName: '${{ parameters.websiteName }}:Create or Update Website'
   condition: eq(${{parameters.includehttps}}, true) 
   inputs:
     IISDeploymentType: 'IISWebsite'
@@ -81,13 +83,14 @@ steps:
 
 
 - task: FileTransform@1
+  displayName: '${{ parameters.websiteName }}:Config transformation' 
   inputs:
     folderPath: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}.zip'
     enableXmlTransform: true
     xmlTransformationRules: '-transform **\*.Local.config -xml **\*.config'
         
 - task: IISWebAppDeploymentOnMachineGroup@0
-  displayName: ${{ parameters.websiteName }}
+  displayName: '${{ parameters.websiteName }}:IIS Deployment'
   inputs:
     WebSiteName: ${{ parameters.websiteName }}
     Package: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}.zip' 

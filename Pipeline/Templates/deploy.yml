@@ -82,7 +82,7 @@ stages:
                   websiteName: ${{variables.webSiteDeclarationStatus}}
                   packageName: ${{variables.packageDeclarationStatus}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 86
+                  port: ${{variables.portDeclarationStatus}}
 
             - ${{ if eq(parameters.applications.dropDownValues, true) }}:
               - template: deploy-web.yml
@@ -90,7 +90,7 @@ stages:
                   websiteName: ${{variables.webSiteDropDownValues}}
                   packageName: ${{variables.packageDropDownValues}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 87
+                  port: port: ${{variables.portDropDownValues}}
 
             - ${{ if eq(parameters.applications.lotAndJobNumber, true) }}:
               - template: deploy-web.yml

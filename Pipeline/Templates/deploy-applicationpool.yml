@@ -3,6 +3,7 @@
 steps:
 
 - task: IISWebAppManagementOnMachineGroup@0
+  displayName: 'Create or Update mco Application Pool'
   inputs:
     IISDeploymentType: 'IISApplicationPool'
     ActionIISApplicationPool: 'CreateOrUpdateAppPool'
@@ -12,6 +13,7 @@ steps:
     AppPoolIdentity: 'ApplicationPoolIdentity'
 
 - task: IISWebAppManagementOnMachineGroup@0
+  displayName: 'Create or Update mcoapi Application Pool'
   inputs:
     IISDeploymentType: 'IISApplicationPool'
     ActionIISApplicationPool: 'CreateOrUpdateAppPool'
