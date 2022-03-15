@@ -33,7 +33,7 @@ variables:
   packageCustomsInventory: 'CustomsInventoryApi'
   packageDeclarationSetting: 'DeclarationSettingsApi'
   packageLotAndJobNumber: 'LotAndJobNumberAPI'
-  packageProduct: 'ProductApi'
+  packageProduct: 'Web1'                                    # Only for Testing
   packageReceivingCountry: 'ReceivingCountryPermitAPI'
   packageTallySheet: 'TallySheetApi'
   packageDeclarationStatus: 'Web1.zip'
