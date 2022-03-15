@@ -4,6 +4,20 @@ parameters:
 
 steps:
 
+- ${{ if eq(parameters.applications.declarationStatus, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/Web1.csproj'
+      packageName: Web1.zip
+
+
+- ${{ if eq(parameters.applications.dropDownValues, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/Web2.csproj' 
+      packageName: Web2.zip
+
+
 - ${{ if eq(parameters.applications.additionalTariff, true) }}:
   - template: build-web.yml
     parameters:
