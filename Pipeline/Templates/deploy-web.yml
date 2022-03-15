@@ -22,7 +22,7 @@ steps:
     IISDeploymentType: 'IISWebsite'
     ActionIISWebsite: 'CreateOrUpdateWebsite'
     WebsiteName:  ${{parameters.packageName}}
-    WebsitePhysicalPath: '$(variables.webSiteBasePath)/${{parameters.websiteName}}'
+    WebsitePhysicalPath: '${{variables.webSiteBasePath}}/${{parameters.websiteName}}'
     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
     CreateOrUpdateAppPoolForWebsite: true
     AppPoolNameForWebsite: '${{parameters.applicationPool}}'
