@@ -22,7 +22,7 @@ steps:
     IISDeploymentType: 'IISWebsite'
     ActionIISWebsite: 'CreateOrUpdateWebsite'
     WebsiteName:  ${{parameters.websiteName}}
-    WebsitePhysicalPath: '${{variables.webSiteBasePath}}/${{parameters.websiteName}}'
+    WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot/${{parameters.websiteName}}'
     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
     CreateOrUpdateAppPoolForWebsite: true
     AppPoolNameForWebsite: '${{parameters.applicationPool}}'
