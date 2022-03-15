@@ -1,14 +1,46 @@
 parameters:
-- name: 'project' 
+- name: 'applications' 
   type: object
   default:
-    - Web1
-    - Web2
-    - Web3
+    - additionalTariff:
+       deploy: false
+       things: sd
+    - b2b:
+       deploy: false
+       things: sd
+    - businessPartner:
+       deploy: false
+       things: sd 
+    - customsInventory:
+       deploy: false
+       things: sd 
+    - declarationSetting:
+       deploy: false
+       things: sd 
+    - declarationStatus:
+       deploy: false
+       things: sd 
+    - dropDownValues:
+       deploy: false
+       things: sd 
+    - lotAndJobNumber:
+       deploy: false
+       things: sd 
+    - mco:
+       deploy: false
+       things: sd 
+    - product:
+       deploy: false
+       things: sd 
+    - receivingCountry:
+       deploy: false
+       things: sd 
+    - tallySheet:
+       deploy: false
+       things: sd  
 
 steps:
-- ${{ each p in parameters.project }}:
-  - template: build-web.yml
-    parameters:
-      project: '**/${{ p }}.csproj'
-      packageName: ${{ p }}
+
+- ${{ each p in parameters.applications }}:
+- ${{ if eq(p.deploy, true) }}:
+  - script: 'echo building $${{ p.deploy }}'

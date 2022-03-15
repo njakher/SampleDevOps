@@ -10,8 +10,8 @@ stages:
 - stage: ${{ parameters.stageName }}
   displayName: 'Deploy  ${{ parameters.stageName }}'
   jobs:
-  - deployment: deploymentProd1
-    displayName: 'Deployment'
+  - deployment: DeploytoIIS
+    displayName: 'Deploy applications to ${{parameters.environment}} environment'
     timeoutInMinutes: 10
     variables:
       - template: ./vars-web.yml
@@ -23,7 +23,7 @@ stages:
         runOnce:
           preDeploy:
             steps:
-            - script: echo initialize, cleanup, backup, install certs
+            - script: echo initialize, cleanup
           deploy:
             steps:
             

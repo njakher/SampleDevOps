@@ -1,5 +1,8 @@
 # File : Web deployment  
 # Name of website is same as folder name
+# Issues :
+# https://github.com/microsoft/azure-pipelines-tasks/issues/11322
+# https://github.com/microsoft/azure-pipelines-tasks/issues/13398
 #
 
 parameters:
@@ -69,15 +72,13 @@ steps:
                               "ipAddress":"*",
                               "hostname":"",
                               "port":"443",
-                              "sslThumbprint":"e8abc0bc75f75c91f4da3ff824cb47cbb0a56943",
+                              "sslThumbprint":"fd08f7dbb9a37ba747db8b07da90704fc7b6fee3",
                               "sniFlag":false
                           }
                       ]
                   }  
 
 
-
-# https://github.com/microsoft/azure-pipelines-tasks/issues/11322
 
 - task: FileTransform@1
   inputs:
