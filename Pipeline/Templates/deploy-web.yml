@@ -21,7 +21,7 @@ steps:
   inputs:
     IISDeploymentType: 'IISWebsite'
     ActionIISWebsite: 'CreateOrUpdateWebsite'
-    WebsiteName:  ${{parameters.packageName}}
+    WebsiteName:  ${{parameters.websiteName}}
     WebsitePhysicalPath: '${{variables.webSiteBasePath}}/${{parameters.websiteName}}'
     WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
     CreateOrUpdateAppPoolForWebsite: true
