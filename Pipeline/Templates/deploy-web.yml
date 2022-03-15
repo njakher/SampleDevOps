@@ -69,7 +69,7 @@ steps:
                               "ipAddress":"*",
                               "hostname":"",
                               "port":"443",
-                              "sslThumbprint":"",
+                              "sslThumbprint":"e8abc0bc75f75c91f4da3ff824cb47cbb0a56943",
                               "sniFlag":false
                           }
                       ]
