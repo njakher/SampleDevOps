@@ -42,7 +42,7 @@ stages:
                   websiteName: ${{variables.webSiteAdditionalTariff}}
                   packageName: ${{variables.packageAdditionalTariff}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 81
+                  port: ${{variables.portAdditionalTariff}}
 
             - ${{ if eq(parameters.applications.b2b, true) }}:
               - template: deploy-web.yml
@@ -50,7 +50,7 @@ stages:
                   websiteName: ${{variables.webSiteB2B}}
                   packageName: ${{variables.packageB2B}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 82
+                  port: ${{variables.portB2B}}
 
             - ${{ if eq(parameters.applications.businessPartner, true) }}:
               - template: deploy-web.yml
@@ -58,7 +58,7 @@ stages:
                   websiteName: ${{variables.webSiteBusinessPartner}}
                   packageName: ${{variables.packageBusinessPartner}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 83
+                  port: ${{variables.portBusinessPartner}}
 
             - ${{ if eq(parameters.applications.customsInventory, true) }}:
               - template: deploy-web.yml
@@ -66,7 +66,7 @@ stages:
                   websiteName: ${{variables.webSiteCustomsInventory}}
                   packageName: ${{variables.packageCustomsInventory}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 84
+                  port: ${{variables.portCustomsInventory}}
 
             - ${{ if eq(parameters.applications.declarationSetting, true) }}:
               - template: deploy-web.yml
@@ -74,7 +74,7 @@ stages:
                   websiteName: ${{variables.webSiteDeclarationSetting}}
                   packageName: ${{variables.packageDeclarationSetting}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 85
+                  port: ${{variables.portDeclarationSetting}}
 
             - ${{ if eq(parameters.applications.declarationStatus, true) }}:
               - template: deploy-web.yml
@@ -98,7 +98,7 @@ stages:
                   websiteName: ${{variables.webSiteLotAndJobNumber}}
                   packageName: ${{variables.packageLotAndJobNumber}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 88
+                  port: ${{variables.portLotAndJobNumber}}
 
             - ${{ if eq(parameters.applications.mco, true) }}:
               - template: deploy-web.yml
@@ -106,8 +106,8 @@ stages:
                   websiteName: ${{variables.webSiteMCO}}
                   packageName: ${{variables.packageMCO}}
                   applicationPool: ${{variables.applicationPoolWeb}}
-                  port: 80
-                  includehttps: true
+                  port: ${{variables.portMCO}}
+#                  includehttps: true
 
             - ${{ if eq(parameters.applications.product, true) }}:
               - template: deploy-web.yml
@@ -115,7 +115,7 @@ stages:
                   websiteName: ${{variables.webSiteProduct}}
                   packageName: ${{variables.packageProduct}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 89
+                  port: ${{variables.portProduct}}
 
             - ${{ if eq(parameters.applications.receivingCountry, true) }}:
               - template: deploy-web.yml
@@ -123,7 +123,7 @@ stages:
                   websiteName: ${{variables.webSiteReceivingCountry}}
                   packageName: ${{variables.packageReceivingCountry}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 90
+                  port: ${{variables.portReceivingCountry}}
 
             - ${{ if eq(parameters.applications.tallySheet, true) }}:
               - template: deploy-web.yml
@@ -131,7 +131,7 @@ stages:
                   websiteName: ${{variables.webSiteTallySheet}}
                   packageName: ${{variables.packageTallySheet}}
                   applicationPool: ${{variables.applicationPoolApi}}
-                  port: 91
+                  port: ${{variables.portTallySheet}}
                 
             - task: IISWebAppManagementOnMachineGroup@0
               displayName: 'Recycle Application Pool'

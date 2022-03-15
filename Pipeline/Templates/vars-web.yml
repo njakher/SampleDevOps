@@ -11,33 +11,33 @@ variables:
 
 # Web application names 
   
+  webSiteMCO: 'MCO'
   webSiteAdditionalTariff: 'AdditionalTariff'
   webSiteB2B: 'B2B' 
   webSiteBusinessPartner: 'BusinessPartner'
   webSiteCustomsInventory: 'CustomsInventory'
   webSiteDeclarationSetting: 'DeclarationSetting'
-  webSiteDeclarationStatus: 'DeclarationStatus'
-  webSiteDropDownValues: 'DropDownValues'
   webSiteLotAndJobNumber: 'LotAndJobNumber'
-  webSiteMCO: 'MCO'
   webSiteProduct: 'Product'
   webSiteReceivingCountry: 'ReceivingCountry'
   webSiteTallySheet: 'TallySheet'
+  webSiteDeclarationStatus: 'DeclarationStatus'
+  webSiteDropDownValues: 'DropDownValues'
 
 # project 
 
+  packageMCO: 'MCO'
   packageAdditionalTariff: 'AdditionalTariffAPI'
   packageB2B: 'BackToBackAPI' 
   packageBusinessPartner: 'BusinessPartnerApi'
   packageCustomsInventory: 'CustomsInventoryApi'
   packageDeclarationSetting: 'DeclarationSettingsApi'
-  packageDeclarationStatus: 'Web1.zip'
-  packageDropDownValues: 'Web2.zip'
   packageLotAndJobNumber: 'LotAndJobNumberAPI'
-  packageMCO: 'MCO'
   packageProduct: 'ProductApi'
   packageReceivingCountry: 'ReceivingCountryPermitAPI'
   packageTallySheet: 'TallySheetApi'
+  packageDeclarationStatus: 'Web1.zip'
+  packageDropDownValues: 'Web2.zip'
 
   
 #  packageAdditionalTariff: 'AdditionalTariff'
@@ -68,15 +68,15 @@ variables:
 
 # Web application ports
   
+  portMCO: '80'
   portAdditionalTariff: '81'
   portB2B: '82' 
   portBusinessPartner: '83'
   portCustomsInventory: '84'
   portDeclarationSetting: '85'
   portDeclarationStatus: '86'
-  portDropDownValues: '87'
-  portLotAndJobNumber: '88'
-  portMCO: '80'
-  portProduct: '89'
-  portReceivingCountry: '90'
-  portTallySheet: '91'
+  portProduct: '87'
+  portReceivingCountry: '88'
+  portTallySheet: '89'
+  portDropDownValues: '90'
+  portLotAndJobNumber: '91'
