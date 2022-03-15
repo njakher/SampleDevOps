@@ -18,7 +18,7 @@ parameters:
 steps:
 
 - task: IISWebAppManagementOnMachineGroup@0
-  condition: eq(${{parameters.includehttps}}, 'false') 
+  condition: eq(${{parameters.includehttps}}, false) 
   inputs:
     IISDeploymentType: 'IISWebsite'
     ActionIISWebsite: 'CreateOrUpdateWebsite'
@@ -43,7 +43,7 @@ steps:
                   }  
 
 - task: IISWebAppManagementOnMachineGroup@0
-  condition: eq(${{parameters.includehttps}}, 'true') 
+  condition: eq(${{parameters.includehttps}}, true) 
   inputs:
     IISDeploymentType: 'IISWebsite'
     ActionIISWebsite: 'CreateOrUpdateWebsite'
