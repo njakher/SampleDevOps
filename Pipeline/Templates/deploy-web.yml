@@ -18,6 +18,7 @@ parameters:
 steps:
 
 - task: IISWebAppManagementOnMachineGroup@0
+  condition: eq(${{parameters.includehttps}}, 'false') 
   inputs:
     IISDeploymentType: 'IISWebsite'
     ActionIISWebsite: 'CreateOrUpdateWebsite'
@@ -32,7 +33,7 @@ steps:
                       bindings:[
                           {
                               "protocol":"http",
-                              "ipAddress":"All Unassigned",
+                              "ipAddress":"*",
                               "hostname":"",
                               "port":"${{parameters.port}}",
                               "sslThumbprint":"",
@@ -40,6 +41,40 @@ steps:
                           }
                       ]
                   }  
+
+- task: IISWebAppManagementOnMachineGroup@0
+  condition: eq(${{parameters.includehttps}}, 'true') 
+  inputs:
+    IISDeploymentType: 'IISWebsite'
+    ActionIISWebsite: 'CreateOrUpdateWebsite'
+    WebsiteName:  ${{parameters.websiteName}}
+    WebsitePhysicalPath: '%SystemDrive%\inetpub\wwwroot\${{parameters.websiteName}}'
+    WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
+    CreateOrUpdateAppPoolForWebsite: true
+    AppPoolNameForWebsite: '${{parameters.applicationPool}}'
+    AddBinding: true
+    Bindings: |
+                  {
+                      bindings:[
+                          {
+                              "protocol":"http",
+                              "ipAddress":"*",
+                              "hostname":"",
+                              "port":"${{parameters.port}}",
+                              "sslThumbprint":"",
+                              "sniFlag":false
+                          },
+                          {
+                              "protocol":"https",
+                              "ipAddress":"*",
+                              "hostname":"",
+                              "port":"443",
+                              "sslThumbprint":"",
+                              "sniFlag":false
+                          }
+                      ]
+                  }  
+
 
 
 # https://github.com/microsoft/azure-pipelines-tasks/issues/11322

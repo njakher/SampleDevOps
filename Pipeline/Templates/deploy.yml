@@ -107,6 +107,7 @@ stages:
                   packageName: ${{variables.packageMCO}}
                   applicationPool: ${{variables.applicationPoolWeb}}
                   port: 80
+                  includehttps: true
 
             - ${{ if eq(parameters.applications.product, true) }}:
               - template: deploy-web.yml
