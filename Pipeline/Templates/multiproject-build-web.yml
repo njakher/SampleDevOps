@@ -1,48 +1,17 @@
 parameters:
 - name: 'applications' 
   type: object
+- name: 'projectinfo'
+  type: object  
   default:
-    - additionalTariff:
-       deploy: false
-       things: sd
-    - b2b:
-       deploy: false
-       things: sd
-    - businessPartner:
-       deploy: false
-       things: sd 
-    - customsInventory:
-       deploy: false
-       things: sd 
-    - declarationSetting:
-       deploy: false
-       things: sd 
-    - declarationStatus:
-       deploy: false
-       things: sd 
-    - dropDownValues:
-       deploy: false
-       things: sd 
-    - lotAndJobNumber:
-       deploy: false
-       things: sd 
-    - mco:
-       deploy: false
-       things: sd 
-    - product:
-       deploy: false
-       things: sd 
-    - receivingCountry:
-       deploy: false
-       things: sd 
-    - tallySheet:
-       deploy: false
-       things: sd  
+    - project:'additionalTariff'
+      deploy:true    
+    - project:'b2b'
+      deploy:true    
 
 steps:
 
 - script: 'echo building $${{ parameters.applications.tallySheet.deploy }}'
 
-- ${{ each p in parameters.applications }}:
-  - ${{ if eq(p.deploy, true) }}:
-    - script: 'echo building $${{ p.deploy }}'
+- ${{ each p in parameters.projectinfo }}:
+  - script: 'abc echo building $${{ p.project }}'
