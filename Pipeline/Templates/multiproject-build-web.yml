@@ -1,17 +1,65 @@
 parameters:
 - name: 'applications' 
   type: object
-- name: 'projectinfo'
-  type: object  
-  default:
-    - project:'additionalTariff'
-      deploy:true    
-    - project:'b2b'
-      deploy:true    
 
 steps:
 
-- script: 'echo building $${{ parameters.applications.tallySheet.deploy }}'
+- ${{ if eq(parameters.applications.additionalTariff, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/$(packageAdditionalTariff).csproj' # AdditionalTariffAPI
+      packageName: $(packageAdditionalTariff).zip
 
-- ${{ each p in parameters.projectinfo }}:
-  - script: 'echo building123 $${{ p.project }}'
+- ${{ if eq(parameters.applications.b2b, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/$(packageB2B).csproj' # BackToBackAPI
+      packageName: $(packageB2B).zip
+
+- ${{ if eq(parameters.applications.businessPartner, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/$(packageBusinessPartner).csproj' # BusinessPartnerApi
+      packageName: $(packageBusinessPartner).zip
+
+- ${{ if eq(parameters.applications.customsInventory, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/$(packageCustomsInventory).csproj' # CustomsInventoryApi
+      packageName: $(packageCustomsInventory).zip
+
+- ${{ if eq(parameters.applications.declarationSetting, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/$(packageDeclarationSetting).csproj' # DeclarationSettingsApi
+      packageName: $(packageDeclarationSetting).zip
+
+- ${{ if eq(parameters.applications.lotAndJobNumber, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/$(packageLotAndJobNumber).csproj' # LotAndJobNumberAPI
+      packageName: $(packageLotAndJobNumber).zip
+
+- ${{ if eq(parameters.applications.mco, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/$(packageMCO).csproj' # MCO
+      packageName: $(packageMCO).zip
+
+- ${{ if eq(parameters.applications.product, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/$(packageProduct).csproj' # ProductApi
+      packageName: $(packageProduct).zip
+      
+- ${{ if eq(parameters.applications.receivingCountry, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/$(packageReceivingCountry).csproj' # ReceivingCountryPermitAPI
+      packageName: $(packageReceivingCountry).zip
+
+- ${{ if eq(parameters.applications.tallySheet, true) }}:
+  - template: build-web.yml
+    parameters:
+      project: '**/$(packageTallySheet).csproj' # TallySheetApi
+      packageName: $(packageTallySheet).zip

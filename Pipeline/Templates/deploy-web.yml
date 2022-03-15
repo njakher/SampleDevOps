@@ -82,7 +82,7 @@ steps:
 
 - task: FileTransform@1
   inputs:
-    folderPath: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}'
+    folderPath: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}.zip'
     enableXmlTransform: true
     xmlTransformationRules: '-transform **\*.Local.config -xml **\*.config'
         
@@ -90,6 +90,6 @@ steps:
   displayName: ${{ parameters.websiteName }}
   inputs:
     WebSiteName: ${{ parameters.websiteName }}
-    Package: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}' 
+    Package: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}.zip' 
     RemoveAdditionalFilesFlag: true
     TakeAppOfflineFlag: true

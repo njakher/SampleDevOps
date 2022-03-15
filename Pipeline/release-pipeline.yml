@@ -149,30 +149,18 @@ stages:
       - template: ./Templates/multiproject-build-web.yml
         parameters:
           applications:
-            additionalTariff:
-              deploy: ${{parameters.additionalTariff}}
-            b2b:
-              deploy: ${{parameters.b2b}}
-            businessPartner:
-              deploy: ${{parameters.businessPartner}}
-            customsInventory:
-              deploy: ${{parameters.customsInventory}}
-            declarationSetting:
-              deploy: ${{parameters.declarationSetting}}
-            declarationStatus:
-              deploy: ${{parameters.declarationStatus}}
-            dropDownValues:
-              deploy: ${{parameters.dropDownValues}}
-            lotAndJobNumber:
-              deploy: ${{parameters.lotAndJobNumber}}
-            mco:
-              deploy: ${{parameters.mco}}
-            product:
-              deploy: ${{parameters.product}}
-            receivingCountry:
-              deploy: ${{parameters.receivingCountry}}
-            tallySheet:
-              deploy: ${{parameters.tallySheet}}  
+            additionalTariff: ${{parameters.additionalTariff}}
+            b2b: ${{parameters.b2b}}
+            businessPartner: ${{parameters.businessPartner}}
+            customsInventory: ${{parameters.customsInventory}}
+            declarationSetting: ${{parameters.declarationSetting}} 
+            declarationStatus: ${{parameters.declarationStatus}}            
+            dropDownValues: ${{parameters.dropDownValues}} 
+            lotAndJobNumber: ${{parameters.lotAndJobNumber}} 
+            mco: ${{parameters.mco}} 
+            product: ${{parameters.product}} 
+            receivingCountry: ${{parameters.receivingCountry}} 
+            tallySheet: ${{parameters.tallySheet}} 
                  
 #      - template: ./Templates/multiproject-build-windows.yml
           

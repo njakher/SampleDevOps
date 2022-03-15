@@ -3,9 +3,13 @@
 variables:
 
   webSiteBasePath: '%SystemDrive%\inetpub\wwwroot'
+
+# Application pool
   
   applicationPoolWeb: 'mco'
   applicationPoolApi: 'mcoapi'
+
+# Web application names 
   
   webSiteAdditionalTariff: 'AdditionalTariff'
   webSiteB2B: 'B2B' 
@@ -19,6 +23,22 @@ variables:
   webSiteProduct: 'Product'
   webSiteReceivingCountry: 'ReceivingCountry'
   webSiteTallySheet: 'TallySheet'
+
+# project 
+
+  packageAdditionalTariff: 'AdditionalTariffAPI'
+  packageB2B: 'BackToBackAPI' 
+  packageBusinessPartner: 'BusinessPartnerApi'
+  packageCustomsInventory: 'CustomsInventoryApi'
+  packageDeclarationSetting: 'DeclarationSettingsApi'
+  packageDeclarationStatus: 'web3.zip'
+  packageDropDownValues: 'web3.zip'
+  packageLotAndJobNumber: 'LotAndJobNumberAPI'
+  packageMCO: 'MCO'
+  packageProduct: 'ProductApi'
+  packageReceivingCountry: 'ReceivingCountryPermitAPI'
+  packageTallySheet: 'TallySheetApi'
+
   
 #  packageAdditionalTariff: 'AdditionalTariff'
 #  packageB2B: 'B2B' 
@@ -45,6 +65,8 @@ variables:
   packageProduct: 'web3.zip'
   packageReceivingCountry: 'web3.zip'
   packageTallySheet: 'web3.zip'
+
+# Web application ports
   
   portAdditionalTariff: '81'
   portB2B: 'web3.zip' 
