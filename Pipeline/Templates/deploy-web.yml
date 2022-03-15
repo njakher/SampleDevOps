@@ -1,10 +1,46 @@
+# File : Web deployment  
+# Name of website is same as folder name
+#
+
 parameters:
 - name: 'websiteName' 
   type: string
 - name: 'packageName' 
   type: string
-  
+- name: 'applicationPool'  
+  type: string
+- name: 'port'
+  type: number
+- name: 'includehttps'
+  type: boolean
+  default: false
+
 steps:
+
+- task: IISWebAppManagementOnMachineGroup@0
+  inputs:
+    IISDeploymentType: 'IISWebsite'
+    ActionIISWebsite: 'CreateOrUpdateWebsite'
+    WebsiteName:  ${{parameters.packageName}}
+    WebsitePhysicalPath: '$(variables.webSiteBasePath)/${{parameters.websiteName}}'
+    WebsitePhysicalPathAuth: 'WebsiteUserPassThrough'
+    CreateOrUpdateAppPoolForWebsite: true
+    AppPoolNameForWebsite: '${{parameters.applicationPool}}'
+    AddBinding: true
+    Bindings: |
+                  {
+                      bindings:[
+                          {
+                              "protocol":"http",
+                              "ipAddress":"All Unassigned",
+                              "hostname":"",
+                              "port":"${{parameters.port}}",
+                              "sslThumbprint":"",
+                              "sniFlag":false
+                          }
+                      ]
+                  }  
+
 
 # https://github.com/microsoft/azure-pipelines-tasks/issues/11322
 
