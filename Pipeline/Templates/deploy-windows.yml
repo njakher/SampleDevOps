@@ -21,7 +21,7 @@ steps:
        else
        {
            Write-Information "Uninstalling service named ${{parameters.serviceName}}."
-           C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe -U ${{parameters.serviceName}}
+           C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe -U "C:\Service\ServiceShipment\IKEA.Customs.Transceiver.ShipmentEventService.exe"
        }
 
 - task: ExtractFiles@1
