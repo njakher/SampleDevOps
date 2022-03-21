@@ -13,9 +13,9 @@ stages:
   - deployment: DeploytoIIS
     displayName: 'Deploy applications to ${{parameters.environment}} environment'
     timeoutInMinutes: 10
-    variables:
-      - template: ./vars-web.yml
-      - template: ./vars-windows.yml      
+#    variables:
+#      - template: ./vars-web.yml
+#      - template: ./vars-windows.yml      
     environment: 
       name: ${{ parameters.environment }}
       resourceType: VirtualMachine
