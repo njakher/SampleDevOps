@@ -28,8 +28,8 @@ steps:
 - task: ExtractFiles@1
   displayName: 'Extract File'
   inputs:
-    archiveFilePatterns: 'C:\package\ServiceShipment.zip'
-    destinationFolder: 'C:\Service\'
+    archiveFilePatterns: '$(serviceBasePath)\${{parameters.packageName}}.zip'
+    destinationFolder: '$(serviceBasePath)'
     cleanDestinationFolder: true
     overwriteExistingFiles: false   
 
