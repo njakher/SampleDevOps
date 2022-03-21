@@ -28,7 +28,7 @@ steps:
   displayName: 'Extract File'
   inputs:
     archiveFilePatterns: 'C:\package\ServiceShipment.zip'
-    destinationFolder: ${{variables.serviceBasePath}}
+    destinationFolder: 'C:\Service\'
     cleanDestinationFolder: true
     overwriteExistingFiles: false   
 
