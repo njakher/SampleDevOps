@@ -38,6 +38,6 @@ steps:
     targetType: 'inline'
     script: |
        Write-Information "Installing service named ${{parameters.serviceName}}."
-       C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe -I ${{variables.serviceBasePath}}\${{parameters.packageName}}
+       C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe -I "C:\Service\ServiceShipment\IKEA.Customs.Transceiver.ShipmentEventService.exe"
        
     
