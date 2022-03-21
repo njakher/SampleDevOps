@@ -29,9 +29,13 @@ stages:
             
             - template: deploy-windows.yml
               parameters:
-                packageName: ${{variables.packageServiceShipment}}
-                serviceName: ${{variables.serviceShipment}}
-                exeName: ${{variables.prjServiceShipment}}
+                packageName: $(packageServiceShipment)
+                serviceName: $(serviceShipment)
+                exeName: $(prjServiceShipment)
+
+#                packageName: $() ${{variables.packageServiceShipment}}
+#                serviceName: ${{variables.serviceShipment}}
+#                exeName: ${{variables.prjServiceShipment}}
 
                 
           on: 
