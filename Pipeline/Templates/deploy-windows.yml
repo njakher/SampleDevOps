@@ -3,7 +3,8 @@ parameters:
   type: string
 - name: 'serviceName'
   type: string
-  
+- name: 'exeName'
+  type: string  
 steps:
 
 - task: PowerShell@2
@@ -21,7 +22,7 @@ steps:
        else
        {
            Write-Information "Uninstalling service named ${{parameters.serviceName}}."
-           C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe -U "C:\Service\ServiceShipment\IKEA.Customs.Transceiver.ShipmentEventService.exe"
+           C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe -U "$(serviceBasePath)\${{parameters.packageName}}\${{parameters.exeName}}.exe"
        }
 
 - task: ExtractFiles@1
@@ -38,6 +39,6 @@ steps:
     targetType: 'inline'
     script: |
        Write-Information "Installing service named ${{parameters.serviceName}}."
-       C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe -I "C:\Service\ServiceShipment\IKEA.Customs.Transceiver.ShipmentEventService.exe"
+       C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe -I "$(serviceBasePath)\${{parameters.packageName}}\${{parameters.exeName}}.exe"
        
     
