@@ -28,7 +28,7 @@ steps:
 - task: ExtractFiles@1
   displayName: 'Extract File'
   inputs:
-    archiveFilePatterns: '$(serviceBasePath)\${{parameters.packageName}}.zip'
+    archiveFilePatterns: 'C:\XCOApp\WindowsService\${{parameters.packageName}}.zip'
     destinationFolder: '$(serviceBasePath)'
     cleanDestinationFolder: true
     overwriteExistingFiles: false   
