@@ -109,7 +109,8 @@ trigger: none
 
 variables:
 - template: ./Templates/vars.yml
-- template: ./Templates/vars-web.yml  
+- template: ./Templates/vars-web.yml
+- template: ./Templates/vars-windows.yml  
   
 stages: 
     
