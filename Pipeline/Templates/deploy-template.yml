@@ -19,7 +19,7 @@ jobs:
         deploy:
           steps:
             - download: current
-              artifact: mydrop
+              path: './drop'
               patterns: '**/$(packageName).zip'
             - template: ./deploy-web.yml
               parameters:
