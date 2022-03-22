@@ -9,29 +9,39 @@ steps:
   - task: UseDotNet@2
     displayName: 'Use .NET Core sdk'
     inputs:
-       packageType: 'sdk'
-       version: '6.0.x'
-       includePreviewVersions: true
+      packageType: 'sdk'
+      version: '6.0.x'
+      includePreviewVersions: true
+       
+  - task: NuGetToolInstaller@1
+      
+  - task: NuGetCommand@2
+    displayName: 'Restore NuGet Package'
+    name: 'RestorePackage'
+    inputs:
+      command: 'restore'
+      restoreSolution: $(solution)
+      feedsToUse: 'select'   
             
   - task: MSBuild@1
     inputs:
-       solution: '$(project)'
-       msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\$(packageName)'
-       platform: '$(projectBuildPlatform)'
-       configuration: '$(buildConfiguration)' 
+      solution: '$(project)'
+      msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\$(packageName)'
+      platform: '$(projectBuildPlatform)'
+      configuration: '$(buildConfiguration)' 
 
   - task: ArchiveFiles@2
     inputs:
-       rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/$(packageName)'
-       includeRootFolder: false
-       archiveType: 'zip'
-       archiveFile: '$(Build.ArtifactStagingDirectory)/package/$(packageName).zip'
-       replaceExistingArchive: true
+      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/$(packageName)'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/package/$(packageName).zip'
+      replaceExistingArchive: true
        
   - task: PublishPipelineArtifact@1
     displayName: 'Publish Artifacts'
     inputs:
-       targetPath: '$(Build.ArtifactStagingDirectory)/package'
-       artifact: 'drop'
-       publishLocation: 'pipeline'
+      targetPath: '$(Build.ArtifactStagingDirectory)/package'
+      artifact: 'drop'
+      publishLocation: 'pipeline'
            
