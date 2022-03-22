@@ -4,3 +4,7 @@ variables:
 
   project: '**/Web1.csproj'
   packageName: 'Web1'
+  websitename: 'testing'
+  applicationpool: 'mcoapi'
+  port: 89
+  includehttps: false

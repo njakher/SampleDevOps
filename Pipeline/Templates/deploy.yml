@@ -20,23 +20,28 @@ stages:
             steps:
               - template: ./deploy-applicationpool.yml   
               
-  - deployment: DeploytoIIS2
-    displayName: 'Deploy applications to ${{parameters.environment}} environment'
-    timeoutInMinutes: 10
-    dependsOn: DeploytoIIS
-    environment: 
-      name: ${{ parameters.environment }}
-      resourceType: VirtualMachine
-    strategy: 
-        runOnce:
-          deploy:
-            steps:
-              - template: ./deploy-web.yml
-                parameters:
-                  websiteName: 'testing'
-                  packageName: 'Web1' 
-                  applicationPool: 'mcoapi'
-                  port: '98'
+  - template: ./deploy-template.yml
+    parameters:
+      varfilename: vars-web1
+      environment: ${{ parameters.environment }}
+  
+#  - deployment: DeploytoIIS2
+#    displayName: 'Deploy applications to ${{parameters.environment}} environment'
+#    timeoutInMinutes: 10
+#    dependsOn: DeploytoIIS
+#    environment: 
+#      name: ${{ parameters.environment }}
+#      resourceType: VirtualMachine
+#    strategy: 
+#        runOnce:
+#          deploy:
+#            steps:
+#              - template: ./deploy-web.yml
+#                parameters:
+#                  websiteName: 'testing'
+#                  packageName: 'Web1' 
+#                  applicationPool: 'mcoapi'
+#                  port: '98'
               
                 
           

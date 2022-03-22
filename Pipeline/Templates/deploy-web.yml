@@ -85,7 +85,7 @@ steps:
 - task: FileTransform@1
   displayName: '${{ parameters.websiteName }}:Config transformation' 
   inputs:
-    folderPath: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}.zip'
+    folderPath: '$(Pipeline.Workspace)/build.additionalTariff/${{parameters.packageName}}.zip'
     enableXmlTransform: true
     xmlTransformationRules: '-transform **\*.Local.config -xml **\*.config'
         
@@ -93,6 +93,6 @@ steps:
   displayName: '${{ parameters.websiteName }}:IIS Deployment'
   inputs:
     WebSiteName: ${{ parameters.websiteName }}
-    Package: '$(Pipeline.Workspace)/drop/${{parameters.packageName}}.zip' 
+    Package: '$(Pipeline.Workspace)/build.additionalTariff/${{parameters.packageName}}.zip' 
     RemoveAdditionalFilesFlag: true
     TakeAppOfflineFlag: true
