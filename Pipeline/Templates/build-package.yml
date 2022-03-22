@@ -5,7 +5,7 @@ parameters:
   type: string
 
 jobs:
-- job: 'BuildAndPublish1'
+- job: ${{parameters.varfilename}}
   displayName: 'Build and Publish'
   variables:
     - template: ${{parameters.varfilename}}.yml
