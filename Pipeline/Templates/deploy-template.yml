@@ -1,0 +1,27 @@
+
+parameters:
+- name: 'varfilename' 
+  type: string
+- name: 'environment' 
+  type: string
+
+jobs:
+- deployment: DeploytoIISsq
+  displayName: 'Deploy applications to ${{parameters.environment}} environment'
+  timeoutInMinutes: 10
+  variables:
+  - template: ./${{parameters.varfilename}}.yml
+  environment: 
+    name: ${{ parameters.environment }}
+    resourceType: VirtualMachine
+  strategy: 
+      runOnce:
+        deploy:
+          steps:
+            - template: ./deploy-web.yml
+              parameters:
+                websiteName: $(websitename)
+                packageName: $(packageName)
+                applicationPool: $(applicationpool) 
+                port: $(port)
+
