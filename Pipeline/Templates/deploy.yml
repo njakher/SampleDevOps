@@ -2,9 +2,7 @@ parameters:
 - name: 'stageName'
   type: string
 - name: 'environment'
-  type: string
-- name: 'applications' 
-  type: object  
+  type: string 
 
 stages:
 - stage: ${{ parameters.stageName }}
