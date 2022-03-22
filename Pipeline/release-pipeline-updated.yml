@@ -162,6 +162,6 @@ stages:
   parameters:
     stageName: 'sdafwq'
     environment: Local
-    applications: 'businessPartner'
+    
                  
 # Comment in the end
