@@ -52,6 +52,6 @@ jobs:
       displayName: 'Publish Artifacts'
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)/package'
-        artifact: 'drop'
+#        artifact: 'drop'
         publishLocation: 'pipeline'
            
