@@ -6,5 +6,5 @@ variables:
   packageName: 'Web1'
   websitename: 'testing'
   applicationpool: 'mcoapi'
-  port: 89
+  port: '89'
   includehttps: false
