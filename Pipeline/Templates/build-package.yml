@@ -3,9 +3,11 @@ parameters:
   type: boolean
 - name: 'varfilename'
   type: string
+- name: 'jobname'
+  type: string
 
 jobs:
-- job: ${{parameters.varfilename}}
+- job: ${{parameters.jobname}}
   displayName: 'Build and Publish'
   variables:
     - template: ${{parameters.varfilename}}.yml

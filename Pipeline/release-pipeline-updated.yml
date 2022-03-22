@@ -152,11 +152,13 @@ stages:
      parameters:
        condition: ${{parameters.additionalTariff}}
        varfilename: vars-web1
+       jobname: 'additionalTariff'
        
    - template: ./Templates/build-package.yml
      parameters:
        condition: ${{parameters.businessPartner}}
        varfilename: vars-web2
+       jobname: 'businessPartner'
        
 #   - job: 'BuildAndPublish2'
 #     displayName: 'Build and Publish'
