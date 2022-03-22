@@ -150,15 +150,14 @@ stages:
                        
    - template: ./Templates/build-package.yml
      parameters:
-       condition: {{parameters.additionalTariff}}
+       condition: ${{parameters.additionalTariff}}
        varfilename: vars-web1
        
    - template: ./Templates/build-package.yml
      parameters:
-       condition: {{parameters.businessPartner}}
+       condition: ${{parameters.businessPartner}}
        varfilename: vars-web2
-
-          
+       
 #   - job: 'BuildAndPublish2'
 #     displayName: 'Build and Publish'
 #     variables:
@@ -170,7 +169,4 @@ stages:
 #     steps:
 #      - template: ./Templates/build-package.yml
                  
-
 # Comment in the end
-
-
