@@ -1,47 +1,55 @@
+parameters:
+- name: 'condition' 
+  type: boolean
+- name: 'varfilename'
+  type: string
 
-steps:
-
-# /p:TransformWebConfigEnabled=False 
-# /p:AutoParameterizationWebConfigConnectionStrings=False
-# Required to support config transformation for stages 
-#
-
-  - task: UseDotNet@2
-    displayName: 'Use .NET Core sdk'
-    inputs:
-      packageType: 'sdk'
-      version: '6.0.x'
-      includePreviewVersions: true
-       
-  - task: NuGetToolInstaller@1
-      
-  - task: NuGetCommand@2
-    displayName: 'Restore NuGet Package'
-    name: 'RestorePackage'
-    inputs:
-      command: 'restore'
-      restoreSolution: $(solution)
-      feedsToUse: 'select'   
-            
-  - task: MSBuild@1
-    inputs:
-      solution: '$(project)'
-      msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\$(packageName)'
-      platform: '$(projectBuildPlatform)'
-      configuration: '$(buildConfiguration)' 
-
-  - task: ArchiveFiles@2
-    inputs:
-      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/$(packageName)'
-      includeRootFolder: false
-      archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/package/$(packageName).zip'
-      replaceExistingArchive: true
-       
-  - task: PublishPipelineArtifact@1
-    displayName: 'Publish Artifacts'
-    inputs:
-      targetPath: '$(Build.ArtifactStagingDirectory)/package'
-      artifact: 'drop'
-      publishLocation: 'pipeline'
+jobs:
+- job: 'BuildAndPublish1'
+  displayName: 'Build and Publish'
+  variables:
+    - template: ${{parameters.varfilename}}.yml
+  pool:
+    vmImage: 'windows-2022' #windows-latest
+  dependsOn: Setup 
+  condition: eq(${{parameters.condition}}, 'true')
+  steps:                     
+    - task: UseDotNet@2
+      displayName: 'Use .NET Core sdk'
+      inputs:
+        packageType: 'sdk'
+        version: '6.0.x'
+        includePreviewVersions: true
+         
+    - task: NuGetToolInstaller@1
+        
+    - task: NuGetCommand@2
+      displayName: 'Restore NuGet Package'
+      name: 'RestorePackage'
+      inputs:
+        command: 'restore'
+        restoreSolution: $(solution)
+        feedsToUse: 'select'   
+              
+    - task: MSBuild@1
+      inputs:
+        solution: '$(project)'
+        msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\$(packageName)'
+        platform: '$(projectBuildPlatform)'
+        configuration: '$(buildConfiguration)' 
+   
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/$(packageName)'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/package/$(packageName).zip'
+        replaceExistingArchive: true
+         
+    - task: PublishPipelineArtifact@1
+      displayName: 'Publish Artifacts'
+      inputs:
+        targetPath: '$(Build.ArtifactStagingDirectory)/package'
+        artifact: 'drop'
+        publishLocation: 'pipeline'
            
