@@ -158,10 +158,10 @@ stages:
        varfilename: vars-web2
        jobname: 'businessPartner'
        
-- template: ./Templates/deploy.yml
-  parameters:
-    stageName: 'sdafwq'
-    environment: Local
+ - template: ./Templates/deploy.yml
+   parameters:
+     stageName: 'sdafwq'
+     environment: Local
     
                  
 # Comment in the end
