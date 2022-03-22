@@ -121,7 +121,6 @@ stages:
      displayName: 'Build and Publish'
      pool:
       vmImage: 'windows-2022' #windows-latest
-
      steps:                       
       - task: UseDotNet@2
         displayName: 'Use .NET Core sdk'
@@ -146,7 +145,6 @@ stages:
           solution: '$(solution)'
           platform: '$(buildPlatform)'
           configuration: '$(buildConfiguration)'
- 
                        
    - template: ./Templates/build-package.yml
      parameters:
@@ -160,15 +158,10 @@ stages:
        varfilename: vars-web2
        jobname: 'businessPartner'
        
-#   - job: 'BuildAndPublish2'
-#     displayName: 'Build and Publish'
-#     variables:
-#      - template: ./Templates/vars-web2.yml
-#     pool:
-#      vmImage: 'windows-2022' #windows-latest 
-#     dependsOn: Setup 
-#     condition: eq(${{parameters.businessPartner}}, 'true')
-#     steps:
-#      - template: ./Templates/build-package.yml
+- template: ./Templates/deploy.yml
+  parameters:
+    stageName: 'sdafwq'
+    environment: Local
+    applications: 'businessPartner'
                  
 # Comment in the end

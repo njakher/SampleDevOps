@@ -13,9 +13,6 @@ stages:
   - deployment: DeploytoIIS
     displayName: 'Deploy applications to ${{parameters.environment}} environment'
     timeoutInMinutes: 10
-#    variables:
-#      - template: ./vars-web.yml
-#      - template: ./vars-windows.yml      
     environment: 
       name: ${{ parameters.environment }}
       resourceType: VirtualMachine
@@ -26,12 +23,16 @@ stages:
             - script: echo initialize, cleanup
           deploy:
             steps:
+            - script: echo clean-up, rollback...   
+          deploy:
+            steps:
+            - script: echo clean-up, rollback...   
             
-            - template: deploy-windows.yml
-              parameters:
-                packageName: $(packageServiceShipment)
-                serviceName: $(serviceShipment)
-                exeName: $(prjServiceShipment)
+#            - template: deploy-windows.yml
+#              parameters:
+#                packageName: $(packageServiceShipment)
+#                serviceName: $(serviceShipment)
+#                exeName: $(prjServiceShipment)
 
 #                packageName: $() ${{variables.packageServiceShipment}}
 #                serviceName: ${{variables.serviceShipment}}
