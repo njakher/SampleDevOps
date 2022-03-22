@@ -1,0 +1,6 @@
+# File: vars.yml
+
+variables:
+
+  project: '**/Web1.csproj'
+  packageName: 'Web1'

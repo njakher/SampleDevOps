@@ -1,0 +1,180 @@
+# Description: Release pipleline.
+
+parameters:
+    
+  - name: additionalTariff
+    displayName: AdditionalTariff Api
+    type: boolean
+    default: true
+    
+  - name: b2b
+    displayName: B2B Api
+    type: boolean
+    default: true
+    
+  - name: businessPartner
+    displayName: BusinessPartner Api
+    type: boolean
+    default: true
+    
+  - name: customsInventory
+    displayName: CustomsInventory Api
+    type: boolean
+    default: true
+    
+  - name: declarationSetting
+    displayName: DeclarationSetting Api
+    type: boolean
+    default: true
+    
+  - name: declarationStatus
+    displayName: DeclarationStatus Api
+    type: boolean
+    default: true
+    
+  - name: dropDownValues
+    displayName: DropDownValues Api
+    type: boolean
+    default: true
+    
+  - name: lotAndJobNumber
+    displayName: LotAndJobNumber Api
+    type: boolean
+    default: true
+    
+  - name: mco
+    displayName: MCO Web
+    type: boolean
+    default: true
+
+  - name: product
+    displayName: Product Api
+    type: boolean
+    default: true
+    
+  - name: receivingCountry
+    displayName: ReceivingCountry Api
+    type: boolean
+    default: true
+    
+  - name: tallySheet
+    displayName: TallySheet Api
+    type: boolean
+    default: true
+
+  - name: acknowledge
+    displayName: Acknowledge Service
+    type: boolean
+    default: true
+    
+  - name: partnerService
+    displayName: Business Partner Service
+    type: boolean
+    default: true
+
+  - name: consignmentService
+    displayName: Consignment Event Service
+    type: boolean
+    default: true
+
+  - name: declarationService
+    displayName: Declaration Service
+    type: boolean
+    default: true
+
+  - name: notificationService
+    displayName: Invoice Notification Service
+    type: boolean
+    default: true
+
+  - name: classificationService
+    displayName: Product Classification Service
+    type: boolean
+    default: true
+
+  - name: shipmentService
+    displayName: Shipment Event Service
+    type: boolean
+    default: true
+
+  - name: itemService
+    displayName: Worklist Item Service
+    type: boolean
+    default: true
+
+name: XCO_Release_$(Date:yyyymmdd)$(Rev:r)
+
+# On-demand for development purpose
+trigger: none
+
+variables:
+- template: ./Templates/vars.yml
+- template: ./Templates/vars-web.yml
+- template: ./Templates/vars-windows.yml  
+  
+stages: 
+    
+ - stage: build
+   displayName: 'Build Solution'
+   jobs:
+   - job: 'Setup'
+     displayName: 'Build and Publish'
+     pool:
+      vmImage: 'windows-2022' #windows-latest
+
+     steps:                       
+      - task: UseDotNet@2
+        displayName: 'Use .NET Core sdk'
+        inputs:
+            packageType: 'sdk'
+            version: '6.0.x'
+            includePreviewVersions: true
+            
+      - task: NuGetToolInstaller@1
+      
+      - task: NuGetCommand@2
+        displayName: 'Restore NuGet Package'
+        name: 'RestorePackage'
+        inputs:
+            command: 'restore'
+            restoreSolution: $(solution)
+            feedsToUse: 'select'
+
+      - task: VSBuild@1
+        displayName: 'Build Solution' 
+        inputs:
+          solution: '$(solution)'
+          platform: '$(buildPlatform)'
+          configuration: '$(buildConfiguration)'
+ 
+   - job: 'BuildAndPublish1'
+     displayName: 'Build and Publish'
+     variables:
+      - template: ./Templates/web1-vars.yml
+     condition: eq(${{parameters.additionalTariff}}, 'true'))
+     steps:                     
+      - template: ./Templates/build-package.yml
+                 
+          
+   - job: 'BuildAndPublish2'
+     displayName: 'Build and Publish'
+     variables:
+      - template: ./Templates/web2-vars.yml
+     condition: eq(${{parameters.businessPartner}}, 'true'))
+     steps:
+      - template: ./Templates/build-package.yml
+      
+   - job: 'BuildAndPublish3'
+     displayName: 'Publish Artifacts'
+     steps:
+      - task: PublishPipelineArtifact@1
+        displayName: 'Publish Artifacts'
+        inputs:
+          targetPath: '$(Build.ArtifactStagingDirectory)/package'
+          artifact: 'drop'
+          publishLocation: 'pipeline'
+              
+
+# Comment in the end
+
+
