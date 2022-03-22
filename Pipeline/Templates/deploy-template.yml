@@ -18,6 +18,9 @@ jobs:
       runOnce:
         deploy:
           steps:
+            - download: current
+              artifact: mydrop
+              patterns: **/$(packageName).zip
             - template: ./deploy-web.yml
               parameters:
                 websiteName: $(websitename)
