@@ -24,6 +24,37 @@ stages:
           deploy:
             steps:
             - script: echo clean-up, rollback...   
+            
+#            - template: deploy-windows.yml
+#              parameters:
+#                packageName: $(packageServiceShipment)
+#                serviceName: $(serviceShipment)
+#                exeName: $(prjServiceShipment)
+
+#                packageName: $() ${{variables.packageServiceShipment}}
+#                serviceName: ${{variables.serviceShipment}}
+#                exeName: ${{variables.prjServiceShipment}}
+
+                
+          on: 
+            failure: 
+              steps: 
+              - script: echo clean-up, rollback...   
+            success: 
+              steps: 
+              - script: echo checks passed, notify...
+              
+  - deployment: DeploytoIIS2
+    displayName: 'Deploy applications to ${{parameters.environment}} environment'
+    timeoutInMinutes: 10
+    environment: 
+      name: ${{ parameters.environment }}
+      resourceType: VirtualMachine
+    strategy: 
+        runOnce:
+          preDeploy:
+            steps:
+            - script: echo initialize, cleanup
           deploy:
             steps:
             - script: echo clean-up, rollback...   
