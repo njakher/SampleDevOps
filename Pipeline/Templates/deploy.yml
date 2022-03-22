@@ -17,7 +17,8 @@ stages:
     strategy: 
         runOnce:
           deploy:
-            - template: ./deploy-applicationpool.yml   
+            steps:
+              - template: ./deploy-applicationpool.yml   
               
   - deployment: DeploytoIIS2
     displayName: 'Deploy applications to ${{parameters.environment}} environment'
@@ -29,12 +30,13 @@ stages:
     strategy: 
         runOnce:
           deploy:
-            - template: ./deploy-web.yml
-              parameters:
-                websiteName: 'testing'
-                packageName: 'Web1' 
-                applicationPool: 'mcoapi'
-                port: '98'
+            steps:
+              - template: ./deploy-web.yml
+                parameters:
+                  websiteName: 'testing'
+                  packageName: 'Web1' 
+                  applicationPool: 'mcoapi'
+                  port: '98'
               
                 
           
