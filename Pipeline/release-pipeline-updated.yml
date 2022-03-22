@@ -151,7 +151,7 @@ stages:
      displayName: 'Build and Publish'
      variables:
       - template: ./Templates/vars-web1.yml
-     condition: eq(${{parameters.additionalTariff}}, 'true'))
+     condition: eq(${{parameters.additionalTariff}}, 'true')
      steps:                     
       - template: ./Templates/build-package.yml
                  
@@ -160,7 +160,7 @@ stages:
      displayName: 'Build and Publish'
      variables:
       - template: ./Templates/vars-web2.yml
-     condition: eq(${{parameters.businessPartner}}, 'true'))
+     condition: eq(${{parameters.businessPartner}}, 'true')
      steps:
       - template: ./Templates/build-package.yml
       
