@@ -151,6 +151,8 @@ stages:
      displayName: 'Build and Publish'
      variables:
       - template: ./Templates/vars-web1.yml
+     pool:
+      vmImage: 'windows-2022' #windows-latest
      dependsOn: Setup 
      condition: eq(${{parameters.additionalTariff}}, 'true')
      steps:                     
@@ -161,6 +163,8 @@ stages:
      displayName: 'Build and Publish'
      variables:
       - template: ./Templates/vars-web2.yml
+     pool:
+      vmImage: 'windows-2022' #windows-latest 
      dependsOn: Setup 
      condition: eq(${{parameters.businessPartner}}, 'true')
      steps:
