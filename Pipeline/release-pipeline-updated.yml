@@ -165,17 +165,7 @@ stages:
      condition: eq(${{parameters.businessPartner}}, 'true')
      steps:
       - template: ./Templates/build-package.yml
-      
-   - job: 'BuildAndPublish3'
-     displayName: 'Publish Artifacts'
-     steps:
-      - task: PublishPipelineArtifact@1
-        displayName: 'Publish Artifacts'
-        inputs:
-          targetPath: '$(Build.ArtifactStagingDirectory)/package'
-          artifact: 'drop'
-          publishLocation: 'pipeline'
-              
+                 
 
 # Comment in the end
 

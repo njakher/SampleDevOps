@@ -6,13 +6,19 @@ steps:
 # Required to support config transformation for stages 
 #
 
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core sdk'
+    inputs:
+       packageType: 'sdk'
+       version: '6.0.x'
+       includePreviewVersions: true
+            
   - task: MSBuild@1
     inputs:
-        solution: '$(project)'
-        msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\$(packageName)'
-        platform: '$(projectBuildPlatform)'
-        configuration: '$(buildConfiguration)'
-        
+       solution: '$(project)'
+       msbuildArguments: '/p:DeployOnBuild=True /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:publishUrl=$(Build.ArtifactStagingDirectory)\$(packageName)'
+       platform: '$(projectBuildPlatform)'
+       configuration: '$(buildConfiguration)' 
 
   - task: ArchiveFiles@2
     inputs:
@@ -21,4 +27,11 @@ steps:
        archiveType: 'zip'
        archiveFile: '$(Build.ArtifactStagingDirectory)/package/$(packageName).zip'
        replaceExistingArchive: true
-      
+       
+  - task: PublishPipelineArtifact@1
+    displayName: 'Publish Artifacts'
+    inputs:
+       targetPath: '$(Build.ArtifactStagingDirectory)/package'
+       artifact: 'drop'
+       publishLocation: 'pipeline'
+           
