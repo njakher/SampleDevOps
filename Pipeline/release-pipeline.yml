@@ -176,7 +176,7 @@ stages:
  - template: ./Templates/deploy.yml
    parameters:
      stageName: Local
-     environment: local
+     environment: Local
 #     applications:
 #       additionalTariff: ${{parameters.additionalTariff}}
 #       b2b: ${{parameters.b2b}}
