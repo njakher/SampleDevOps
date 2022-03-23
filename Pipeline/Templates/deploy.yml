@@ -24,7 +24,7 @@ stages:
               - powershell: | 
                       # check if https binding already exsits for the site
                       Write-Host "##vso[task.setvariable variable=isHttpsPresent;]true"
-                      if (!(Get-IISSiteBinding -Name B2B -Protocol "https" ))
+                      if (!(Get-IISSiteBinding -Name B2B -Protocol "http" ))
                       {
                             Write-Host "##vso[task.setvariable variable=isHttpsPresent;]false"
                       }
