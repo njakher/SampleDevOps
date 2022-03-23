@@ -26,7 +26,7 @@ stages:
                 inputs:
                   folderPath: 'C:\Service\a\ServiceAcknowledge'
                   enableXmlTransform: true
-                  xmlTransformationRules: '-transform **\*.$(Release.EnvironmentName).config -xml **\*.config'        
+                  xmlTransformationRules: '-transform App.Local.config -xml *.exe.config'        
               
               
 #  - template: ./deploy-template.yml
