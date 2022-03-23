@@ -23,16 +23,15 @@ stages:
               - download: none
               - powershell: | 
                       # check if https binding already exsits for the site
-                      Write-Host "##vso[task.setvariable variable=isHttpsPresent;]true"
-                      if (!(Get-IISSiteBinding -Name B2B -Protocol "http" ))
+                      if (!(Get-IISSiteBinding -Name B2B -Protocol "https" ))
                       {
-                            Write-Host "##vso[task.setvariable variable=isHttpsPresent;]false"
+                            Write-Host "##vso[task.setvariable variable=isHttpsMissing;]true"
                       }
                 displayName: 'Https Exists'
                 
               - task: FileTransform@1
                 displayName: 'Config Transformation'
-                condition: eq(variables['isHttpsPresent'], false)  
+                condition: eq(variables['isHttpsMissing'], true)  
                 inputs:
                   folderPath: 'C:\Service\a\ServiceAcknowledge'
                   enableXmlTransform: true
