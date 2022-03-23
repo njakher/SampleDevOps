@@ -121,83 +121,83 @@ stages:
      displayName: 'Build and Publish'
      pool:
       vmImage: 'windows-2022' #windows-latest
-
      steps:
+       - script: echo initialize, cleanup, backup, install certs
                        
-      - task: UseDotNet@2
-        displayName: 'Use .NET Core sdk'
-        inputs:
-            packageType: 'sdk'
-            version: '6.0.x'
-            includePreviewVersions: true
+#      - task: UseDotNet@2
+#        displayName: 'Use .NET Core sdk'
+#        inputs:
+#            packageType: 'sdk'
+#            version: '6.0.x'
+#            includePreviewVersions: true
             
-      - task: NuGetToolInstaller@1
+#      - task: NuGetToolInstaller@1
       
-      - task: NuGetCommand@2
-        displayName: 'Restore NuGet Package'
-        name: 'RestorePackage'
-        inputs:
-            command: 'restore'
-            restoreSolution: $(solution)
-            feedsToUse: 'select'
+#      - task: NuGetCommand@2
+#        displayName: 'Restore NuGet Package'
+#        name: 'RestorePackage'
+#        inputs:
+#            command: 'restore'
+#            restoreSolution: $(solution)
+#            feedsToUse: 'select'
 
-      - task: VSBuild@1
-        displayName: 'Build Solution' 
-        inputs:
-          solution: '$(solution)'
-          platform: '$(buildPlatform)'
-          configuration: '$(buildConfiguration)'
+#      - task: VSBuild@1
+#        displayName: 'Build Solution' 
+#        inputs:
+#          solution: '$(solution)'
+#          platform: '$(buildPlatform)'
+#          configuration: '$(buildConfiguration)'
  
-      - template: ./Templates/multiproject-build-web.yml
-        parameters:
-          applications:
-            additionalTariff: ${{parameters.additionalTariff}}
-            b2b: ${{parameters.b2b}}
-            businessPartner: ${{parameters.businessPartner}}
-            customsInventory: ${{parameters.customsInventory}}
-            declarationSetting: ${{parameters.declarationSetting}} 
-            declarationStatus: ${{parameters.declarationStatus}}            
-            dropDownValues: ${{parameters.dropDownValues}} 
-            lotAndJobNumber: ${{parameters.lotAndJobNumber}} 
-            mco: ${{parameters.mco}} 
-            product: ${{parameters.product}} 
-            receivingCountry: ${{parameters.receivingCountry}} 
-            tallySheet: ${{parameters.tallySheet}} 
+#      - template: ./Templates/multiproject-build-web.yml
+#        parameters:
+#          applications:
+#            additionalTariff: ${{parameters.additionalTariff}}
+#            b2b: ${{parameters.b2b}}
+#            businessPartner: ${{parameters.businessPartner}}
+#            customsInventory: ${{parameters.customsInventory}}
+#            declarationSetting: ${{parameters.declarationSetting}} 
+#            declarationStatus: ${{parameters.declarationStatus}}            
+#            dropDownValues: ${{parameters.dropDownValues}} 
+#            lotAndJobNumber: ${{parameters.lotAndJobNumber}} 
+#            mco: ${{parameters.mco}} 
+#            product: ${{parameters.product}} 
+#            receivingCountry: ${{parameters.receivingCountry}} 
+#            tallySheet: ${{parameters.tallySheet}} 
                  
 #      - template: ./Templates/multiproject-build-windows.yml
           
-      - task: PublishPipelineArtifact@1
-        displayName: 'Publish Artifacts'
-        inputs:
-          targetPath: '$(Build.ArtifactStagingDirectory)/package'
-          artifact: 'drop'
-          publishLocation: 'pipeline'
+#     - task: PublishPipelineArtifact@1
+#        displayName: 'Publish Artifacts'
+#        inputs:
+#          targetPath: '$(Build.ArtifactStagingDirectory)/package'
+#          artifact: 'drop'
+#          publishLocation: 'pipeline'
       
  - template: ./Templates/deploy.yml
    parameters:
      stageName: Local
      environment: local
-     applications:
-       additionalTariff: ${{parameters.additionalTariff}}
-       b2b: ${{parameters.b2b}}
-       businessPartner: ${{parameters.businessPartner}}
-       customsInventory: ${{parameters.customsInventory}}
-       declarationSetting: ${{parameters.declarationSetting}} 
-       declarationStatus: ${{parameters.declarationStatus}}            
-       dropDownValues: ${{parameters.dropDownValues}} 
-       lotAndJobNumber: ${{parameters.lotAndJobNumber}} 
-       mco: ${{parameters.mco}} 
-       product: ${{parameters.product}} 
-       receivingCountry: ${{parameters.receivingCountry}} 
-       tallySheet: ${{parameters.tallySheet}} 
-       acknowledge: ${{parameters.acknowledge}} 
-       partnerService: ${{parameters.partnerService}} 
-       consignmentService: ${{parameters.consignmentService}}
-       declarationService: ${{parameters.declarationService}}            
-       notificationService: ${{parameters.notificationService}}
-       classificationService: ${{parameters.classificationService}}
-       shipmentService: ${{parameters.shipmentService}}
-       itemService: ${{parameters.itemService}}
+#     applications:
+#       additionalTariff: ${{parameters.additionalTariff}}
+#       b2b: ${{parameters.b2b}}
+#       businessPartner: ${{parameters.businessPartner}}
+#       customsInventory: ${{parameters.customsInventory}}
+#       declarationSetting: ${{parameters.declarationSetting}} 
+#       declarationStatus: ${{parameters.declarationStatus}}            
+#       dropDownValues: ${{parameters.dropDownValues}} 
+#       lotAndJobNumber: ${{parameters.lotAndJobNumber}} 
+#       mco: ${{parameters.mco}} 
+#       product: ${{parameters.product}} 
+#       receivingCountry: ${{parameters.receivingCountry}} 
+#       tallySheet: ${{parameters.tallySheet}} 
+#       acknowledge: ${{parameters.acknowledge}} 
+#       partnerService: ${{parameters.partnerService}} 
+#       consignmentService: ${{parameters.consignmentService}}
+#       declarationService: ${{parameters.declarationService}}            
+#       notificationService: ${{parameters.notificationService}}
+#       classificationService: ${{parameters.classificationService}}
+#       shipmentService: ${{parameters.shipmentService}}
+#       itemService: ${{parameters.itemService}}
 
 
 # Comment in the end

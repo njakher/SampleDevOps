@@ -7,6 +7,8 @@ parameters:
 stages:
 - stage: ${{ parameters.stageName }}
   displayName: 'Deploy  ${{ parameters.stageName }}'
+  variables:
+    Release.EnvironmentName: ${{ parameters.environment }}
   jobs:
   - deployment: DeploytoIIS
     displayName: 'Deploy applications to ${{parameters.environment}} environment'
@@ -19,10 +21,16 @@ stages:
           deploy:
             steps:
               - download: none
-              - template: ./deploy-applicationpool.yml   
+              - task: FileTransform@1
+                displayName: 'Config Transformation'
+                inputs:
+                  folderPath: 'C:\Service\a\ServiceAcknowledge'
+                  enableXmlTransform: true
+                  xmlTransformationRules: '-transform **\*.$(Release.EnvironmentName).config -xml **\*.config'        
               
-  - template: ./deploy-template.yml
-    parameters:
-      varfilename: vars-web1
-      environment: ${{ parameters.environment }}
+              
+#  - template: ./deploy-template.yml
+#    parameters:
+#      varfilename: vars-web1
+#      environment: ${{ parameters.environment }}
   
